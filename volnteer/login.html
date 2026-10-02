@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Sign In</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <!-- Left Side Info -->
+        <div class="login-info">
+            <a href="../index.html" class="logo" style="text-decoration: none;">
+                <img src="../image/logo.png" alt="Jusoor Logo">
+                <div class="logo-text">
+                    <h1>JUSOOR</h1>
+                    <p>TURN YOUR TIME INTO EXPERIENCE</p>
+                </div>
+            </a>
+            
+            <h2>Welcome Back to Your<br>Journey</h2>
+            <p>Continue building your professional experience and unlock<br>new career opportunities.</p>
+            
+            <div class="login-benefits">
+                <div class="benefit-item">
+                    <div class="benefit-icon icon-red"><i class="fas fa-bullseye"></i></div>
+                    <span>Track your volunteer hours</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon icon-orange"><i class="fas fa-file-alt"></i></div>
+                    <span>Earn verified certificates</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon icon-blue"><i class="fas fa-rocket"></i></div>
+                    <span>Build your career network</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side Form -->
+        <div class="login-box">
+            <div class="login-header">
+                <h3>Sign In</h3>
+                <p>Enter your credentials to access your account</p>
+            </div>
+            
+            <form action="#" method="POST" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" placeholder="your.email@example.com" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Please enter a valid email address." required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" class="form-control" placeholder="........" pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}" title="Password must contain at least 8 characters, including a letter, a number, and a symbol." id="loginPassword" required>
+                        <i class="far fa-eye toggle-password" data-target="loginPassword"></i>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                    <label class="remember-me" style="margin-bottom: 0;">
+                        <input type="checkbox" name="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="../forget password/forgot-password.html" class="forgot-password" style="font-size: 0.9rem;">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full" style="width: 100%;">Sign In <i class="fas fa-arrow-right ml-2"></i></button>
+            </form>
+
+            <div class="signup-footer">
+                <p>Don't have an account? <a href="signup.html" class="text-green">Create Account</a></p>
+                <p class="terms-text">By continuing, you agree to Jusoor's Terms of Service and Privacy Policy</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const togglePasswords = document.querySelectorAll('.toggle-password');
+            togglePasswords.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const input = document.getElementById(targetId);
+                    if (input) {
+                        if (input.type === 'password') {
+                            input.type = 'text';
+                            this.classList.remove('fa-eye');
+                            this.classList.add('fa-eye-slash');
+                        } else {
+                            input.type = 'password';
+                            this.classList.remove('fa-eye-slash');
+                            this.classList.add('fa-eye');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+

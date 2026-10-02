@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Reports</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+        /* Admin specific overrides */
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; margin: 0; }
+        .dashboard-wrapper { display: flex; min-height: 100vh; }
+        .admin-sidebar {
+            width: 260px;
+            background-color: #1e293b !important;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        .admin-sidebar .nav-item {
+            color: #94a3b8;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin: 0 10px 5px 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .admin-sidebar .nav-item:hover {
+            color: white;
+            background-color: rgba(255,255,255,0.05);
+        }
+        .admin-sidebar .nav-item.active {
+            background-color: #22c55e !important;
+            color: white !important;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 30px 40px;
+            background-color: #f1f5f9;
+        }
+
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .report-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 5px;
+        }
+
+        .report-option:hover {
+            background-color: #f8fafc;
+        }
+
+        .report-option.active {
+            background-color: #f8fafc;
+            border-color: #94a3b8;
+        }
+
+        .report-option-icon {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .report-option-title {
+            margin: 0 0 2px 0;
+            font-size: 0.9rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .report-option-desc {
+            margin: 0;
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        .date-input-group {
+            margin-bottom: 15px;
+        }
+
+        .date-input-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .date-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-family: inherit;
+            color: #1e293b;
+            box-sizing: border-box;
+        }
+
+        .btn-generate {
+            width: 100%;
+            padding: 12px;
+            background-color: #1e293b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .btn-generate:hover {
+            background-color: #0f172a;
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            min-height: 400px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header" style="border-bottom: 1px solid #334155; padding: 20px 0; margin-bottom: 20px;">
+                <a href="#" class="logo" style="text-decoration: none; display: flex; align-items: center; gap: 10px; padding: 0 15px;">
+                    <img src="../image/logo.png" alt="Jusoor Logo" style="width: 40px; height: 40px; object-fit: contain; border-radius: 8px;">
+                    <div class="logo-text">
+                        <h1 style="font-size: 1.1rem; margin: 0; letter-spacing: 1px; color: white;">JUSOOR</h1>
+                        <p style="font-size: 0.65rem; margin: 0; color: #94a3b8;">Admin Panel</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav" style="padding: 0; flex: 1;">
+                <a href="admin-dashboard.html" class="nav-item">
+                    <i class="fas fa-th-large" style="width: 25px;"></i> Dashboard
+                </a>
+                <a href="admin-users.html" class="nav-item">
+                    <i class="fas fa-user-friends" style="width: 25px;"></i> Users
+                </a>
+                <a href="admin-organizations.html" class="nav-item">
+                    <i class="far fa-building" style="width: 25px;"></i> Organizations
+                </a>
+                <a href="admin-verification.html" class="nav-item">
+                    <i class="fas fa-shield-alt" style="width: 25px;"></i> Verification
+                </a>
+                <a href="admin-reports.html" class="nav-item active">
+                    <i class="far fa-chart-bar" style="width: 25px;"></i> Reports
+                </a>
+                <a href="admin-notifications.html" class="nav-item">
+                    <i class="far fa-bell" style="width: 25px;"></i> Notifications
+                </a>
+                <a href="admin-profile.html" class="nav-item">
+                    <i class="far fa-user-circle" style="width: 25px;"></i> Admin Profile
+                </a>
+                <a href="../index.html" class="nav-item" style="margin-top: 20px;">
+                    <i class="fas fa-sign-out-alt" style="width: 25px;"></i> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div style="margin-bottom: 30px;">
+                <h2 style="margin: 0; color: #0f172a; font-weight: 700; font-size: 1.5rem;">Reports</h2>
+                <p style="margin: 5px 0 0 0; color: #64748b; font-size: 0.95rem;">Generate and export platform reports</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 30px;">
+                
+                <!-- Left Column -->
+                <div>
+                    <!-- Report Types -->
+                    <div class="panel" style="padding: 15px;">
+                        <h5 style="margin: 0 0 15px 10px; font-size: 0.95rem; color: #1e293b;">Report Type</h5>
+                        
+                        <div class="report-option active" onclick="selectReport(this)">
+                            <i class="fas fa-user report-option-icon" style="color: #4f46e5;"></i>
+                            <div>
+                                <h4 class="report-option-title">User Report</h4>
+                                <p class="report-option-desc">Registered users, roles, and status breakdown</p>
+                            </div>
+                        </div>
+
+                        <div class="report-option" onclick="selectReport(this)">
+                            <i class="far fa-building report-option-icon" style="color: #0ea5e9;"></i>
+                            <div>
+                                <h4 class="report-option-title">Organization Report</h4>
+                                <p class="report-option-desc">Organizations overview and verification status</p>
+                            </div>
+                        </div>
+
+                        <div class="report-option" onclick="selectReport(this)">
+                            <i class="far fa-clipboard report-option-icon" style="color: #f59e0b;"></i>
+                            <div>
+                                <h4 class="report-option-title">Opportunities Report</h4>
+                                <p class="report-option-desc">Active and completed volunteer opportunities</p>
+                            </div>
+                        </div>
+
+                        <div class="report-option" onclick="selectReport(this)">
+                            <i class="fas fa-file-alt report-option-icon" style="color: #ec4899;"></i>
+                            <div>
+                                <h4 class="report-option-title">Applications Report</h4>
+                                <p class="report-option-desc">Volunteer applications and acceptance rates</p>
+                            </div>
+                        </div>
+
+                        <div class="report-option" onclick="selectReport(this)">
+                            <i class="far fa-clock report-option-icon" style="color: #22c55e;"></i>
+                            <div>
+                                <h4 class="report-option-title">Volunteer Hours Report</h4>
+                                <p class="report-option-desc">Total hours logged by volunteers</p>
+                            </div>
+                        </div>
+
+                        <div class="report-option" onclick="selectReport(this)">
+                            <i class="far fa-calendar-alt report-option-icon" style="color: #6366f1;"></i>
+                            <div>
+                                <h4 class="report-option-title">Monthly Activity Report</h4>
+                                <p class="report-option-desc">Full month-by-month platform activity</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date Range -->
+                    <div class="panel">
+                        <h5 style="margin: 0 0 15px 0; font-size: 0.95rem; color: #1e293b;">Date Range</h5>
+                        
+                        <div class="date-input-group">
+                            <label>From</label>
+                            <input type="date" class="date-input" value="2026-01-01">
+                        </div>
+                        
+                        <div class="date-input-group" style="margin-bottom: 25px;">
+                            <label>To</label>
+                            <input type="date" class="date-input" value="2026-09-19">
+                        </div>
+
+                        <button class="btn-generate">Generate Report</button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Results -->
+                <div class="panel">
+                    <div class="empty-state">
+                        <i class="fas fa-chart-bar" style="font-size: 3rem; color: #cbd5e0; margin-bottom: 15px; display: inline-block; position: relative;">
+                            <!-- Adding some multi-color blocks to simulate the icon in the image -->
+                            <span style="position: absolute; bottom: 0; left: -10px; width: 15px; height: 35px; background: #a7f3d0; border-radius: 3px;"></span>
+                            <span style="position: absolute; bottom: 0; left: 10px; width: 15px; height: 50px; background: #fbcfe8; border-radius: 3px;"></span>
+                            <span style="position: absolute; bottom: 0; left: 30px; width: 15px; height: 25px; background: #bfdbfe; border-radius: 3px;"></span>
+                        </i>
+                        <h3 style="color: #475569; margin: 20px 0 10px 0; font-size: 1.2rem;">No Report Generated</h3>
+                        <p style="color: #94a3b8; margin: 0; font-size: 0.9rem;">Select a report type and date range, then click Generate Report.</p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function selectReport(element) {
+            document.querySelectorAll('.report-option').forEach(el => {
+                el.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
+
+

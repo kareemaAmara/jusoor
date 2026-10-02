@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - My Applications</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-light dashboard-body">
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
+                    <img src="../image/logo.png" alt="Jusoor Logo" style="width: 32px; height: 32px; border-radius: 50%;">
+                    <div class="logo-text">
+                        <h1 style="font-size: 1.1rem; margin: 0; color: white;">JUSOOR</h1>
+                        <p style="font-size: 0.5rem; margin: 0; opacity: 0.8; color: white;">TURN YOUR TIME INTO EXPERIENCE</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="applications.html" class="nav-item active">
+                    <i class="far fa-file-alt"></i> My Applications
+                </a>
+                <a href="hours.html" class="nav-item">
+                    <i class="far fa-clock"></i> Volunteer Hours
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="far fa-user"></i> Profile
+                </a>
+                <a href="notifications.html" class="nav-item">
+                    <i class="far fa-bell"></i> Notifications
+                </a>
+                <a href="../index.html" class="nav-item" style="margin-top: 20px;">
+                    <i class="fas fa-sign-out-alt" style="width: 25px;"></i> Logout
+                </a>
+            </nav>
+
+            <div class="sidebar-footer-card">
+                <div class="card-indicator"></div>
+                <h6>Volunteer</h6>
+                <p>Track your volunteer journey</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Header -->
+            <header class="dashboard-header mb-4">
+                <div>
+                    <h2>My Applications</h2>
+                    <p class="text-muted text-sm">Track and manage your volunteer applications</p>
+                </div>
+            </header>
+
+            <!-- Filter Tabs -->
+            <div class="app-filters mb-4">
+                <a href="#" class="app-filter-tab active" data-filter="all">All Applications (7)</a>
+                <a href="#" class="app-filter-tab" data-filter="accepted">Accepted (3)</a>
+                <a href="#" class="app-filter-tab" data-filter="pending">Pending (2)</a>
+                <a href="#" class="app-filter-tab" data-filter="completed">Completed (1)</a>
+                <a href="#" class="app-filter-tab" data-filter="rejected">Rejected (1)</a>
+            </div>
+
+            <!-- Applications List -->
+            <div class="applications-container">
+                
+                <!-- Card 1 (Accepted) -->
+                <div class="app-full-card content-box mb-4">
+                    <div class="app-card-header">
+                        <div>
+                            <div class="d-flex align-items-center mb-2" style="gap: 10px;">
+                                <span class="tag tag-green">Environment</span>
+                                <span class="badge badge-green">accepted</span>
+                            </div>
+                            <h4 class="mb-1">Environmental Cleanup Campaign</h4>
+                            <p class="text-muted text-sm"><i class="far fa-building mr-1"></i> Green Gaza Initiative</p>
+                        </div>
+                        <a href="details.html?id=1" class="btn btn-light border btn-sm"><i class="far fa-eye mr-2"></i> View</a>
+                    </div>
+                    
+                    <div class="app-card-meta mb-3">
+                        <div><i class="far fa-calendar-alt text-muted mr-1"></i> May 30, 2026</div>
+                        <div><i class="fas fa-map-marker-alt text-muted mr-1"></i> Gaza City</div>
+                        <div><i class="far fa-clock text-muted mr-1"></i> 4 hours</div>
+                    </div>
+                    
+                    <div class="app-card-applied mb-3">
+                        <span class="text-muted text-sm">Applied on:</span> <span class="text-dark font-weight-medium text-sm">May 15, 2026</span>
+                    </div>
+                    
+                    <div class="app-card-message bg-light-green">
+                        <h6 class="mb-1 text-dark">Organization Message:</h6>
+                        <p class="text-sm mb-0 text-muted">Congratulations! Your application has been accepted. Please arrive 15 minutes early.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 (Accepted) -->
+                <div class="app-full-card content-box mb-4">
+                    <div class="app-card-header">
+                        <div>
+                            <div class="d-flex align-items-center mb-2" style="gap: 10px;">
+                                <span class="tag tag-green">Education</span>
+                                <span class="badge badge-green">accepted</span>
+                            </div>
+                            <h4 class="mb-1">Education Support Program</h4>
+                            <p class="text-muted text-sm"><i class="far fa-building mr-1"></i> Future Scholars</p>
+                        </div>
+                        <a href="details.html?id=3" class="btn btn-light border btn-sm"><i class="far fa-eye mr-2"></i> View</a>
+                    </div>
+                    
+                    <div class="app-card-meta mb-3">
+                        <div><i class="far fa-calendar-alt text-muted mr-1"></i> June 8, 2026</div>
+                        <div><i class="fas fa-map-marker-alt text-muted mr-1"></i> Rafah</div>
+                        <div><i class="far fa-clock text-muted mr-1"></i> 6 hours</div>
+                    </div>
+                    
+                    <div class="app-card-applied mb-3">
+                        <span class="text-muted text-sm">Applied on:</span> <span class="text-dark font-weight-medium text-sm">May 16, 2026</span>
+                    </div>
+                    
+                    <div class="app-card-message bg-light-green">
+                        <h6 class="mb-1 text-dark">Organization Message:</h6>
+                        <p class="text-sm mb-0 text-muted">Welcome aboard! Training materials will be sent to you via email.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 (Pending) -->
+                <div class="app-full-card content-box mb-4">
+                    <div class="app-card-header">
+                        <div>
+                            <div class="d-flex align-items-center mb-2" style="gap: 10px;">
+                                <span class="tag tag-green">Social Services</span>
+                                <span class="badge badge-gray">pending</span>
+                            </div>
+                            <h4 class="mb-1">Food Distribution Drive</h4>
+                            <p class="text-muted text-sm"><i class="far fa-building mr-1"></i> Community Care</p>
+                        </div>
+                        <a href="details.html?id=4" class="btn btn-light border btn-sm"><i class="far fa-eye mr-2"></i> View</a>
+                    </div>
+                    
+                    <div class="app-card-meta mb-3">
+                        <div><i class="far fa-calendar-alt text-muted mr-1"></i> June 10, 2026</div>
+                        <div><i class="fas fa-map-marker-alt text-muted mr-1"></i> Gaza City</div>
+                        <div><i class="far fa-clock text-muted mr-1"></i> 3 hours</div>
+                    </div>
+                    
+                    <div class="app-card-applied mb-3">
+                        <span class="text-muted text-sm">Applied on:</span> <span class="text-dark font-weight-medium text-sm">May 18, 2026</span>
+                    </div>
+                    
+                    <button class="btn btn-danger btn-full">Withdraw Application</button>
+                </div>
+                
+                <!-- Card 4 (Accepted) -->
+                <div class="app-full-card content-box mb-4">
+                    <div class="app-card-header">
+                        <div>
+                            <div class="d-flex align-items-center mb-2" style="gap: 10px;">
+                                <span class="tag tag-green">Education</span>
+                                <span class="badge badge-green">accepted</span>
+                            </div>
+                            <h4 class="mb-1">Youth Mentorship Program</h4>
+                            <p class="text-muted text-sm"><i class="far fa-building mr-1"></i> Bright Futures</p>
+                        </div>
+                        <a href="details.html?id=5" class="btn btn-light border btn-sm"><i class="far fa-eye mr-2"></i> View</a>
+                    </div>
+                    
+                    <div class="app-card-meta mb-3">
+                        <div><i class="far fa-calendar-alt text-muted mr-1"></i> June 12, 2026</div>
+                        <div><i class="fas fa-map-marker-alt text-muted mr-1"></i> Deir al-Balah</div>
+                        <div><i class="far fa-clock text-muted mr-1"></i> 8 hours</div>
+                    </div>
+                    
+                    <div class="app-card-applied mb-3">
+                        <span class="text-muted text-sm">Applied on:</span> <span class="text-dark font-weight-medium text-sm">May 15, 2026</span>
+                    </div>
+                    
+                    <div class="app-card-message bg-light-green">
+                        <h6 class="mb-1 text-dark">Organization Message:</h6>
+                        <p class="text-sm mb-0 text-muted">You've been selected! Orientation is on June 5th.</p>
+                    </div>
+                </div>
+                
+                <!-- Card 5 (Pending) -->
+                <div class="app-full-card content-box mb-4">
+                    <div class="app-card-header">
+                        <div>
+                            <div class="d-flex align-items-center mb-2" style="gap: 10px;">
+                                <span class="tag tag-green">Healthcare</span>
+                                <span class="badge badge-gray">pending</span>
+                            </div>
+                            <h4 class="mb-1">Medical Awareness Campaign</h4>
+                            <p class="text-muted text-sm"><i class="far fa-building mr-1"></i> Health First</p>
+                        </div>
+                        <a href="details.html?id=6" class="btn btn-light border btn-sm"><i class="far fa-eye mr-2"></i> View</a>
+                    </div>
+                    
+                    <div class="app-card-meta mb-3">
+                        <div><i class="far fa-calendar-alt text-muted mr-1"></i> June 15, 2026</div>
+                        <div><i class="fas fa-map-marker-alt text-muted mr-1"></i> Khan Younis</div>
+                        <div><i class="far fa-clock text-muted mr-1"></i> 4 hours</div>
+                    </div>
+                    
+                    <div class="app-card-applied mb-3">
+                        <span class="text-muted text-sm">Applied on:</span> <span class="text-dark font-weight-medium text-sm">May 20, 2026</span>
+                    </div>
+                    
+                    <button class="btn btn-danger btn-full">Withdraw Application</button>
+                </div>
+                
+                <!-- Card 6 (Rejected) -->
+                <div class="app-full-card content-box mb-4">
+                    <div class="app-card-header">
+                        <div>
+                            <div class="d-flex align-items-center mb-2" style="gap: 10px;">
+                                <span class="tag tag-green">Arts & Culture</span>
+                                <span class="badge badge-red">rejected</span>
+                            </div>
+                            <h4 class="mb-1">Community Art Workshop</h4>
+                            <p class="text-muted text-sm"><i class="far fa-building mr-1"></i> Arts for Gaza</p>
+                        </div>
+                        <a href="#" class="btn btn-light border btn-sm"><i class="far fa-eye mr-2"></i> View</a>
+                    </div>
+                    
+                    <div class="app-card-meta mb-3">
+                        <div><i class="far fa-calendar-alt text-muted mr-1"></i> May 25, 2026</div>
+                        <div><i class="fas fa-map-marker-alt text-muted mr-1"></i> Gaza City</div>
+                        <div><i class="far fa-clock text-muted mr-1"></i> 5 hours</div>
+                    </div>
+                    
+                    <div class="app-card-applied mb-3">
+                        <span class="text-muted text-sm">Applied on:</span> <span class="text-dark font-weight-medium text-sm">May 10, 2026</span>
+                    </div>
+                    
+                    <div class="app-card-message bg-light-gray">
+                        <h6 class="mb-1 text-dark">Organization Message:</h6>
+                        <p class="text-sm mb-0 text-muted">Thank you for your interest. Unfortunately, we've filled all positions for this event.</p>
+                    </div>
+                </div>
+
+                <!-- Card 7 (Completed) -->
+                <div class="app-full-card content-box mb-4">
+                    <div class="app-card-header">
+                        <div>
+                            <div class="d-flex align-items-center mb-2" style="gap: 10px;">
+                                <span class="tag tag-green">Environment</span>
+                                <span class="badge badge-outline">completed</span>
+                            </div>
+                            <h4 class="mb-1">Beach Cleanup Initiative</h4>
+                            <p class="text-muted text-sm"><i class="far fa-building mr-1"></i> Clean Shores</p>
+                        </div>
+                        <a href="#" class="btn btn-light border btn-sm"><i class="far fa-eye mr-2"></i> View</a>
+                    </div>
+                    
+                    <div class="app-card-meta mb-3">
+                        <div><i class="far fa-calendar-alt text-muted mr-1"></i> April 20, 2026</div>
+                        <div><i class="fas fa-map-marker-alt text-muted mr-1"></i> Gaza City</div>
+                        <div><i class="far fa-clock text-muted mr-1"></i> 4 hours</div>
+                    </div>
+                    
+                    <div class="app-card-applied mb-3">
+                        <span class="text-muted text-sm">Applied on:</span> <span class="text-dark font-weight-medium text-sm">April 5, 2026</span>
+                    </div>
+                    
+                    <div class="app-card-message bg-light-green">
+                        <h6 class="mb-1 text-dark">Feedback:</h6>
+                        <p class="text-sm mb-0 text-muted">Excellent work! Ahmed was very dedicated and helped lead a team.</p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Script -->
+    <script src="../js/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+

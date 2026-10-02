@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Volunteer Applications</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .skill-tag {
+            background-color: #eff6ff;
+            color: #3b82f6;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            margin-right: 4px;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .status-under-review {
+            background-color: #fef9c3;
+            color: #ca8a04;
+        }
+        .status-accepted {
+            background-color: #dcfce7;
+            color: #16a34a;
+        }
+        .status-rejected {
+            background-color: #fee2e2;
+            color: #dc2626;
+        }
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .btn-view { color: #64748b; }
+        .btn-view:hover { color: #3b82f6; }
+        .btn-accept { color: #22c55e; }
+        .btn-accept:hover { color: #16a34a; }
+        .btn-reject { color: #ef4444; }
+        .btn-reject:hover { color: #dc2626; }
+        .volunteer-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+        .search-filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            align-items: center;
+        }
+        .search-input-group {
+            flex: 1;
+            position: relative;
+        }
+        .search-input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+        .search-input-group input {
+            width: 100%;
+            padding: 10px 10px 10px 40px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+        .filter-select {
+            padding: 10px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.9rem;
+            color: #475569;
+            background-color: white;
+            min-width: 150px;
+        }
+    </style>
+</head>
+<body class="bg-light dashboard-body">
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
+                    <img src="../image/logo.png" alt="Jusoor Logo" style="width: 32px; height: 32px; border-radius: 50%;">
+                    <div class="logo-text">
+                        <h1 style="font-size: 1.1rem; margin: 0; color: white;">JUSOOR</h1>
+                        <p style="font-size: 0.5rem; margin: 0; opacity: 0.8; color: white;">TURN YOUR TIME INTO EXPERIENCE</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="org-dashboard.html" class="nav-item">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="org-opportunities.html" class="nav-item">
+                    <i class="far fa-calendar-check"></i> Opportunities
+                </a>
+                <a href="org-applications.html" class="nav-item active">
+                    <i class="far fa-file-alt"></i> Applications
+                </a>
+                <a href="org-volunteers.html" class="nav-item">
+                    <i class="fas fa-users"></i> Volunteers
+                </a>
+                <a href="org-attendance.html" class="nav-item">
+                    <i class="fas fa-qrcode"></i> Attendance
+                </a>
+                <a href="org-reports.html" class="nav-item">
+                    <i class="far fa-chart-bar"></i> Reports
+                </a>
+                <a href="org-profile.html" class="nav-item">
+                    <i class="far fa-building"></i> Org Profile
+                </a>
+                <a href="../index.html" class="nav-item" style="margin-top: 20px;">
+                    <i class="fas fa-sign-out-alt" style="width: 25px;"></i> Logout
+                </a>
+            </nav>
+
+            <div class="sidebar-footer-card" style="background-color: #166534; padding: 15px; border-radius: 8px; margin: 15px; margin-top: auto; color: white;">
+                <h6 style="color: white; margin-bottom: 5px; font-weight: 600; display: flex; align-items: center; gap: 8px;"><i class="fas fa-shield-alt" style="color: #4ade80;"></i> Organization</h6>
+                <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.75rem; margin-bottom: 0;">Manage your opportunities</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Header -->
+            <header class="dashboard-header mb-4">
+                <div>
+                    <h2 style="font-weight: 600; color: #1e293b; margin-bottom: 5px;">Volunteer Applications</h2>
+                    <p class="text-muted text-sm mb-0">Review and manage incoming volunteer applications</p>
+                </div>
+            </header>
+
+            <!-- Status Cards -->
+            <div class="stats-grid mb-4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                <div class="stat-card content-box" style="padding: 1.5rem; border: none; border-radius: 12px; background-color: #f1f5f9; box-shadow: none;">
+                    <div style="color: #64748b; font-size: 1.2rem; margin-bottom: 10px;"><i class="fas fa-users"></i></div>
+                    <h3 style="font-size: 2rem; font-weight: 700; color: #0f172a; margin: 0 0 5px 0; line-height: 1;">7</h3>
+                    <div style="color: #64748b; font-size: 0.85rem;">Total Applications</div>
+                </div>
+                
+                <div class="stat-card content-box" style="padding: 1.5rem; border: none; border-radius: 12px; background-color: #fefce8; box-shadow: none;">
+                    <div style="color: #ca8a04; font-size: 1.2rem; margin-bottom: 10px;"><i class="far fa-clock"></i></div>
+                    <h3 style="font-size: 2rem; font-weight: 700; color: #854d0e; margin: 0 0 5px 0; line-height: 1;">4</h3>
+                    <div style="color: #a16207; font-size: 0.85rem;">Under Review</div>
+                </div>
+                
+                <div class="stat-card content-box" style="padding: 1.5rem; border: none; border-radius: 12px; background-color: #f0fdf4; box-shadow: none;">
+                    <div style="color: #16a34a; font-size: 1.2rem; margin-bottom: 10px;"><i class="fas fa-file-check"></i><i class="far fa-check-square"></i></div>
+                    <h3 style="font-size: 2rem; font-weight: 700; color: #166534; margin: 0 0 5px 0; line-height: 1;">2</h3>
+                    <div style="color: #15803d; font-size: 0.85rem;">Accepted</div>
+                </div>
+                
+                <div class="stat-card content-box" style="padding: 1.5rem; border: none; border-radius: 12px; background-color: #fef2f2; box-shadow: none;">
+                    <div style="color: #dc2626; font-size: 1.2rem; margin-bottom: 10px;"><i class="far fa-file-excel"></i></div>
+                    <h3 style="font-size: 2rem; font-weight: 700; color: #991b1b; margin: 0 0 5px 0; line-height: 1;">1</h3>
+                    <div style="color: #b91c1c; font-size: 0.85rem;">Rejected</div>
+                </div>
+            </div>
+
+            <!-- Search and Filter Bar -->
+            <div class="search-filter-bar">
+                <div class="search-input-group">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by name or email...">
+                </div>
+                <select id="statusFilter" class="filter-select">
+                    <option>All Statuses</option>
+                    <option>Under Review</option>
+                    <option>Accepted</option>
+                    <option>Rejected</option>
+                </select>
+                <select id="oppFilter" class="filter-select">
+                    <option>All</option>
+                    <option>Children Support in Ramadan</option>
+                    <option>Beach Cleanup Campaign</option>
+                    <option>First Aid Training Workshop</option>
+                </select>
+            </div>
+
+            <!-- Table -->
+            <div class="content-box" style="padding: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid #e2e8f0; color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; background-color: #f8fafc;">
+                            <th style="padding: 15px 20px; font-weight: 600;">Volunteer</th>
+                            <th style="padding: 15px 20px; font-weight: 600;">Skills</th>
+                            <th style="padding: 15px 20px; font-weight: 600;">Opportunity</th>
+                            <th style="padding: 15px 20px; font-weight: 600;">Applied Date</th>
+                            <th style="padding: 15px 20px; font-weight: 600;">Status</th>
+                            <th style="padding: 15px 20px; font-weight: 600;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="applicationsTableBody">
+                        <!-- Row 1 -->
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 15px 20px;">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="volunteer-avatar">A</div>
+                                    <div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Ahmed Mahmoud</h6>
+                                        <span style="color: #94a3b8; font-size: 0.8rem;">ahmed@example.com</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="skill-tag">Organization</span>
+                                <span class="skill-tag">Photography</span>
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem; max-width: 150px;">
+                                Children Support in Ramadan
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">
+                                2024-04-01
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="status-badge status-under-review">Under Review</span>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <button class="action-btn btn-view"><i class="far fa-eye"></i></button>
+                                <button class="action-btn btn-accept"><i class="far fa-check-circle"></i></button>
+                                <button class="action-btn btn-reject" style="margin-right:0;"><i class="far fa-times-circle"></i></button>
+                            </td>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 15px 20px;">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="volunteer-avatar">S</div>
+                                    <div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Sara Ibrahim</h6>
+                                        <span style="color: #94a3b8; font-size: 0.8rem;">sara@example.com</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="skill-tag">Design</span>
+                                <span class="skill-tag">Computing</span>
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem; max-width: 150px;">
+                                Beach Cleanup Campaign
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">
+                                2024-04-02
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="status-badge status-accepted">Accepted</span>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <button class="action-btn btn-view"><i class="far fa-eye"></i></button>
+                                <button class="action-btn btn-reject" style="margin-right:0;"><i class="far fa-times-circle"></i></button>
+                            </td>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 15px 20px;">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="volunteer-avatar">M</div>
+                                    <div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Mohammed Khalid</h6>
+                                        <span style="color: #94a3b8; font-size: 0.8rem;">mohammed@example.com</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="skill-tag">Cooking</span>
+                                <span class="skill-tag">Organization</span>
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem; max-width: 150px;">
+                                Children Support in Ramadan
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">
+                                2024-04-03
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="status-badge status-under-review">Under Review</span>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <button class="action-btn btn-view"><i class="far fa-eye"></i></button>
+                                <button class="action-btn btn-accept"><i class="far fa-check-circle"></i></button>
+                                <button class="action-btn btn-reject" style="margin-right:0;"><i class="far fa-times-circle"></i></button>
+                            </td>
+                        </tr>
+                        <!-- Row 4 -->
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 15px 20px;">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="volunteer-avatar">F</div>
+                                    <div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Fatima Ali</h6>
+                                        <span style="color: #94a3b8; font-size: 0.8rem;">fatima@example.com</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="skill-tag">Teaching</span>
+                                <span class="skill-tag">Training</span>
+                                <span class="skill-tag">First Aid</span>
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem; max-width: 150px;">
+                                First Aid Training Workshop
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">
+                                2024-04-04
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="status-badge status-rejected">Rejected</span>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <button class="action-btn btn-view"><i class="far fa-eye"></i></button>
+                                <button class="action-btn btn-accept"><i class="far fa-check-circle"></i></button>
+                            </td>
+                        </tr>
+                        <!-- Row 5 -->
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 15px 20px;">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="volunteer-avatar">Y</div>
+                                    <div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Yousef Hassan</h6>
+                                        <span style="color: #94a3b8; font-size: 0.8rem;">yousef@example.com</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="skill-tag">Organization</span>
+                                <span class="skill-tag">Management</span>
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem; max-width: 150px;">
+                                Beach Cleanup Campaign
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">
+                                2024-04-05
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="status-badge status-accepted">Accepted</span>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <button class="action-btn btn-view"><i class="far fa-eye"></i></button>
+                                <button class="action-btn btn-reject" style="margin-right:0;"><i class="far fa-times-circle"></i></button>
+                            </td>
+                        </tr>
+                        <!-- Row 6 -->
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 15px 20px;">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="volunteer-avatar">N</div>
+                                    <div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Nour Ahmed</h6>
+                                        <span style="color: #94a3b8; font-size: 0.8rem;">nour@example.com</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="skill-tag">Translation</span>
+                                <span class="skill-tag">Photography</span>
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem; max-width: 150px;">
+                                Beach Cleanup Campaign
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">
+                                2024-04-06
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="status-badge status-under-review">Under Review</span>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <button class="action-btn btn-view"><i class="far fa-eye"></i></button>
+                                <button class="action-btn btn-accept"><i class="far fa-check-circle"></i></button>
+                                <button class="action-btn btn-reject" style="margin-right:0;"><i class="far fa-times-circle"></i></button>
+                            </td>
+                        </tr>
+                        <!-- Row 7 -->
+                        <tr>
+                            <td style="padding: 15px 20px;">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="volunteer-avatar">R</div>
+                                    <div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Rana Omar</h6>
+                                        <span style="color: #94a3b8; font-size: 0.8rem;">rana@example.com</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="skill-tag">Teaching</span>
+                                <span class="skill-tag">Organization</span>
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem; max-width: 150px;">
+                                Children Support in Ramadan
+                            </td>
+                            <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">
+                                2024-04-07
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <span class="status-badge status-under-review">Under Review</span>
+                            </td>
+                            <td style="padding: 15px 20px;">
+                                <button class="action-btn btn-view"><i class="far fa-eye"></i></button>
+                                <button class="action-btn btn-accept"><i class="far fa-check-circle"></i></button>
+                                <button class="action-btn btn-reject" style="margin-right:0;"><i class="far fa-times-circle"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="applicationsCounter" style="padding: 15px 20px; color: #94a3b8; font-size: 0.8rem; border-top: 1px solid #e2e8f0;">
+                    Showing 7 of 7 applications
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const statusFilter = document.getElementById('statusFilter');
+            const oppFilter = document.getElementById('oppFilter');
+            const tableBody = document.getElementById('applicationsTableBody');
+            const rows = tableBody.getElementsByTagName('tr');
+
+            function filterTable() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const statusValue = statusFilter.value;
+                const oppValue = oppFilter.value;
+
+                let visibleCount = 0;
+
+                for (let i = 0; i < rows.length; i++) {
+                    const row = rows[i];
+                    
+                    const nameText = row.querySelector('h6').textContent.toLowerCase();
+                    // get the email span
+                    const emailSpan = row.querySelector('div > span');
+                    const emailText = emailSpan ? emailSpan.textContent.toLowerCase() : '';
+                    
+                    const statusText = row.querySelector('.status-badge').textContent.trim();
+                    const oppText = row.querySelectorAll('td')[2].textContent.trim();
+
+                    const matchesSearch = nameText.includes(searchTerm) || emailText.includes(searchTerm);
+                    const matchesStatus = statusValue === 'All Statuses' || statusText === statusValue;
+                    const matchesOpp = oppValue === 'All' || oppText === oppValue;
+
+                    if (matchesSearch && matchesStatus && matchesOpp) {
+                        row.style.display = '';
+                        visibleCount++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+                
+                const counterDiv = document.getElementById('applicationsCounter');
+                if (counterDiv) {
+                    counterDiv.textContent = `Showing ${visibleCount} of ${rows.length} applications`;
+                }
+            }
+
+            searchInput.addEventListener('input', filterTable);
+            statusFilter.addEventListener('change', filterTable);
+            oppFilter.addEventListener('change', filterTable);
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+

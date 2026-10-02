@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Admin Profile & Management</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+        /* Admin specific overrides */
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; margin: 0; padding: 0; }
+        .dashboard-wrapper { display: flex; min-height: 100vh; }
+        .admin-sidebar {
+            width: 260px;
+            background-color: #1e293b !important;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+        .admin-sidebar .nav-item {
+            color: #94a3b8;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin: 0 10px 5px 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .admin-sidebar .nav-item:hover {
+            color: white;
+            background-color: rgba(255,255,255,0.05);
+        }
+        .admin-sidebar .nav-item.active {
+            background-color: #22c55e !important;
+            color: white !important;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 30px 40px;
+            background-color: #f1f5f9;
+        }
+
+        .content-box {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            padding: 25px;
+        }
+        
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .badge-active { background-color: #dcfce7; color: #16a34a; }
+        .badge-inactive { background-color: #f1f5f9; color: #64748b; }
+        .badge-role { background-color: #eff6ff; color: #3b82f6; }
+
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 15px 10px; color: #64748b; font-size: 0.75rem; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; }
+        td { padding: 12px 10px; font-size: 0.85rem; color: #1e293b; border-bottom: 1px solid #f1f5f9; }
+        tr:last-child td { border-bottom: none; }
+        
+        .btn {
+            width: 100%; padding: 10px; border-radius: 6px; font-weight: 500; margin-bottom: 10px; cursor: pointer; transition: 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header" style="border-bottom: 1px solid #334155; padding: 20px 0; margin-bottom: 20px;">
+                <a href="#" class="logo" style="text-decoration: none; display: flex; align-items: center; gap: 10px; padding: 0 15px;">
+                    <img src="../image/logo.png" alt="Jusoor Logo" style="width: 40px; height: 40px; object-fit: contain; border-radius: 8px;">
+                    <div class="logo-text">
+                        <h1 style="font-size: 1.1rem; margin: 0; letter-spacing: 1px; color: white;">JUSOOR</h1>
+                        <p style="font-size: 0.65rem; margin: 0; color: #94a3b8;">Admin Panel</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav" style="padding: 0; flex: 1;">
+                <a href="admin-dashboard.html" class="nav-item">
+                    <i class="fas fa-th-large" style="width: 25px;"></i> Dashboard
+                </a>
+                <a href="admin-users.html" class="nav-item">
+                    <i class="fas fa-user-friends" style="width: 25px;"></i> Users
+                </a>
+                <a href="admin-organizations.html" class="nav-item">
+                    <i class="far fa-building" style="width: 25px;"></i> Organizations
+                </a>
+                <a href="admin-verification.html" class="nav-item">
+                    <i class="fas fa-shield-alt" style="width: 25px;"></i> Verification
+                </a>
+                <a href="admin-reports.html" class="nav-item">
+                    <i class="far fa-chart-bar" style="width: 25px;"></i> Reports
+                </a>
+                <a href="admin-notifications.html" class="nav-item">
+                    <i class="far fa-bell" style="width: 25px;"></i> Notifications
+                </a>
+                <a href="admin-profile.html" class="nav-item active">
+                    <i class="far fa-user-circle" style="width: 25px;"></i> Admin Profile
+                </a>
+                <a href="../index.html" class="nav-item" style="margin-top: 20px;">
+                    <i class="fas fa-sign-out-alt" style="width: 25px;"></i> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div style="margin-bottom: 30px;">
+                <h2 style="margin: 0; color: #0f172a; font-weight: 700; font-size: 1.5rem;">Admin Profile & Management</h2>
+                <p style="margin: 5px 0 0 0; color: #64748b; font-size: 0.95rem;">Manage your account and system administrators</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px; margin-bottom: 20px;">
+                <!-- Profile Card (Left) -->
+                <div class="content-box" style="text-align: center;">
+                    <div style="width: 100px; height: 100px; border-radius: 50%; background-color: #1e293b; color: white; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 700; margin: 0 auto 15px; position: relative;">
+                        NR
+                        <input type="file" id="profileImageUpload" style="display: none;" accept="image/*">
+                        <div onclick="document.getElementById('profileImageUpload').click()" style="position: absolute; bottom: 0; right: 0; background: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.2); cursor: pointer;">
+                            <i class="fas fa-camera" style="color: #64748b; font-size: 0.8rem;"></i>
+                        </div>
+                    </div>
+                    <h4 id="sidebarName" style="margin: 0 0 5px 0; color: #1e293b; font-weight: 600; font-size: 1.2rem;">Nour Al-Rashid</h4>
+                    <p id="sidebarEmail" style="color: #64748b; font-size: 0.85rem; margin-bottom: 10px;">nour@jusoor.sa</p>
+                    <div class="badge badge-role" style="margin-bottom: 10px;">System Administrator</div>
+                    <br>
+                    <div class="badge badge-active" style="margin-bottom: 25px;">Active</div>
+                    
+                    <button class="btn" onclick="toggleEditMode(true)" style="background-color: #1e293b; color: white; border: none;">Edit Profile</button>
+                    <button class="btn" onclick="window.location.href='forgot-password.html'" style="background-color: white; color: #1e293b; border: 1px solid #cbd5e0;">Change Password</button>
+                </div>
+
+                <!-- Right Side Cards -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Personal Information View Mode -->
+                    <div class="content-box" id="personalInfoView">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h5 style="margin: 0; color: #1e293b; font-weight: 600; font-size: 1rem;">Personal Information</h5>
+                            <a href="javascript:void(0)" onclick="toggleEditMode(true)" style="font-size: 0.85rem; color: #3b82f6; text-decoration: none;">Edit</a>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div>
+                                <p style="color: #64748b; font-size: 0.8rem; margin: 0 0 5px 0;">Full Name</p>
+                                <p id="viewFullName" style="color: #1e293b; font-size: 0.95rem; font-weight: 500; margin: 0;">Nour Al-Rashid</p>
+                            </div>
+                            <div>
+                                <p style="color: #64748b; font-size: 0.8rem; margin: 0 0 5px 0;">Email Address</p>
+                                <p id="viewEmail" style="color: #1e293b; font-size: 0.95rem; font-weight: 500; margin: 0;">nour@jusoor.sa</p>
+                            </div>
+                            <div>
+                                <p style="color: #64748b; font-size: 0.8rem; margin: 0 0 5px 0;">Phone Number</p>
+                                <p id="viewPhone" style="color: #1e293b; font-size: 0.95rem; font-weight: 500; margin: 0;">+966 55 000 1111</p>
+                            </div>
+                            <div>
+                                <p style="color: #64748b; font-size: 0.8rem; margin: 0 0 5px 0;">Role</p>
+                                <p style="color: #1e293b; font-size: 0.95rem; font-weight: 500; margin: 0;">System Administrator</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information Edit Mode (Hidden initially) -->
+                    <div class="content-box" id="personalInfoEdit" style="display: none;">
+                        <h5 style="margin: 0 0 20px 0; color: #1e293b; font-weight: 600; font-size: 1rem;">Edit Personal Information</h5>
+                        <form onsubmit="event.preventDefault(); saveProfileChanges();">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                                <div>
+                                    <label style="display: block; color: #475569; font-size: 0.85rem; font-weight: 500; margin-bottom: 5px;">Full Name</label>
+                                    <input type="text" id="editFullName" value="Nour Al-Rashid" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 0.95rem; outline: none; box-sizing: border-box; color: #1e293b;">
+                                </div>
+                                <div>
+                                    <label style="display: block; color: #475569; font-size: 0.85rem; font-weight: 500; margin-bottom: 5px;">Email Address</label>
+                                    <input type="email" id="editEmail" value="nour@jusoor.sa" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 0.95rem; outline: none; box-sizing: border-box; color: #1e293b;">
+                                </div>
+                                <div>
+                                    <label style="display: block; color: #475569; font-size: 0.85rem; font-weight: 500; margin-bottom: 5px;">Phone Number</label>
+                                    <input type="text" id="editPhone" value="+966 55 000 1111" style="width: 100%; padding: 8px 12px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 0.95rem; outline: none; box-sizing: border-box; color: #1e293b;">
+                                </div>
+                                <div>
+                                    <label style="display: block; color: #94a3b8; font-size: 0.85rem; font-weight: 500; margin-bottom: 5px;">Role (Read-only)</label>
+                                    <input type="text" value="System Administrator" disabled style="width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; background-color: #f8fafc; border-radius: 6px; font-size: 0.95rem; box-sizing: border-box; color: #94a3b8;">
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                                <button type="button" onclick="toggleEditMode(false)" style="padding: 8px 20px; background-color: white; color: #475569; border: 1px solid #cbd5e0; border-radius: 6px; font-weight: 500; cursor: pointer;">Cancel</button>
+                                <button type="submit" style="padding: 8px 20px; background-color: #22c55e; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer;">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Account Information -->
+                    <div class="content-box">
+                        <h5 style="margin: 0 0 20px 0; color: #1e293b; font-weight: 600; font-size: 1rem;">Account Information</h5>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+                            <div>
+                                <p style="color: #64748b; font-size: 0.8rem; margin: 0 0 5px 0;">Account Status</p>
+                                <div class="badge badge-active">Active</div>
+                            </div>
+                            <div>
+                                <p style="color: #64748b; font-size: 0.8rem; margin: 0 0 5px 0;">Last Login</p>
+                                <p style="color: #1e293b; font-size: 0.95rem; font-weight: 500; margin: 0;">2026-09-24 09:14 AM</p>
+                            </div>
+                            <div>
+                                <p style="color: #64748b; font-size: 0.8rem; margin: 0 0 5px 0;">Member Since</p>
+                                <p style="color: #1e293b; font-size: 0.95rem; font-weight: 500; margin: 0;">2025-01-10</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Management Section -->
+            <div class="content-box" style="padding: 0; overflow: visible;">
+                <div style="padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0;">
+                    <h5 style="margin: 0; color: #1e293b; font-weight: 600; font-size: 1rem;">Admin Management</h5>
+                    <button onclick="toggleAddAdminModal(true)" style="background-color: #22c55e; color: white; border: none; padding: 8px 15px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; cursor: pointer;">
+                        + Add New Admin
+                    </button>
+                </div>
+                
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                    <thead>
+                        <tr>
+                            <th>Admin</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th>Last Login</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminsTableBody">
+                        <tr>
+                            <td style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 28px; height: 28px; background-color: #1e293b; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 600;">NR</div>
+                                <span style="font-weight: 500;">Nour Al-Rashid</span>
+                            </td>
+                            <td>nour@jusoor.sa</td>
+                            <td>Super Admin</td>
+                            <td><span class="badge badge-active">Active</span></td>
+                            <td>2025-01-10</td>
+                            <td>2026-09-24</td>
+                            <td>
+                                <div style="position: relative; display: inline-block;">
+                                    <button onclick="toggleActionDropdown(this)" style="background: white; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; color: #64748b; cursor: pointer; display: flex; align-items: center; gap: 5px;">Actions <i class="fas fa-caret-down"></i></button>
+                                    <div class="action-dropdown" style="display: none; position: absolute; right: 0; top: 100%; margin-top: 5px; background: white; border: 1px solid #e2e8f0; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 160px; z-index: 10;">
+                                        <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #1e293b; border-bottom: 1px solid #f1f5f9;">View Details</a>
+                                        <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #1e293b; border-bottom: 1px solid #f1f5f9;">Edit Admin</a>
+                                        <a href="../forget password/forgot-password.html" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #3b82f6; border-bottom: 1px solid #f1f5f9;">Change Password</a>
+                                        <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #d97706; border-bottom: 1px solid #f1f5f9;">Deactivate</a>
+                                        <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #e11d48;">Delete Admin</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 28px; height: 28px; background-color: #0ea5e9; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 600;">TS</div>
+                                <span style="font-weight: 500;">Tariq Saleh</span>
+                            </td>
+                            <td>tariq@jusoor.sa</td>
+                            <td>System Administrator</td>
+                            <td><span class="badge badge-active">Active</span></td>
+                            <td>2025-06-15</td>
+                            <td>2026-09-22</td>
+                            <td>
+                                <div style="position: relative; display: inline-block;">
+                                    <button onclick="toggleActionDropdown(this)" style="background: white; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; color: #64748b; cursor: pointer; display: flex; align-items: center; gap: 5px;">Actions <i class="fas fa-caret-down"></i></button>
+                                    <div class="action-dropdown" style="display: none; position: absolute; right: 0; top: 100%; margin-top: 5px; background: white; border: 1px solid #e2e8f0; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 160px; z-index: 10;">
+                                        <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #1e293b; border-bottom: 1px solid #f1f5f9;">View Details</a>
+                                        <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #1e293b; border-bottom: 1px solid #f1f5f9;">Edit Admin</a>
+                                        <a href="../forget password/forgot-password.html" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #3b82f6; border-bottom: 1px solid #f1f5f9;">Change Password</a>
+                                        <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #d97706; border-bottom: 1px solid #f1f5f9;">Deactivate</a>
+                                        <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #e11d48;">Delete Admin</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 28px; height: 28px; background-color: #a855f7; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 600;">RK</div>
+                                <span style="font-weight: 500;">Rima Khalil</span>
+                            </td>
+                            <td>rima@jusoor.sa</td>
+                            <td>Content Moderator</td>
+                            <td><span class="badge badge-inactive">Inactive</span></td>
+                            <td>2026-03-01</td>
+                            <td>2026-08-30</td>
+                            <td>
+                                <div style="position: relative; display: inline-block;">
+                                    <button onclick="toggleActionDropdown(this)" style="background: white; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; color: #64748b; cursor: pointer; display: flex; align-items: center; gap: 5px;">Actions <i class="fas fa-caret-down"></i></button>
+                                    <div class="action-dropdown" style="display: none; position: absolute; right: 0; top: 100%; margin-top: 5px; background: white; border: 1px solid #e2e8f0; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 160px; z-index: 10;">
+                                        <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #1e293b; border-bottom: 1px solid #f1f5f9;">View Details</a>
+                                        <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #1e293b; border-bottom: 1px solid #f1f5f9;">Edit Admin</a>
+                                        <a href="../forget password/forgot-password.html" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #3b82f6; border-bottom: 1px solid #f1f5f9;">Change Password</a>
+                                        <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #16a34a; border-bottom: 1px solid #f1f5f9;">Activate</a>
+                                        <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #e11d48;">Delete Admin</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add New Admin Modal Overlay -->
+    <div id="addAdminOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: white; border-radius: 12px; width: 100%; max-width: 450px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); overflow: hidden;">
+            <div style="background: #1e293b; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;">
+                <h4 style="margin: 0; font-weight: 600; font-size: 1.1rem;">Add New Admin</h4>
+                <i class="fas fa-times" style="cursor: pointer; color: #cbd5e0; font-size: 1rem;" onclick="toggleAddAdminModal(false)"></i>
+            </div>
+            
+            <div style="padding: 25px 30px; max-height: 80vh; overflow-y: auto;">
+                <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                    <div style="width: 80px; height: 80px; background-color: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative;">
+                        <i class="far fa-user" style="font-size: 2rem; color: #94a3b8;"></i>
+                        <input type="file" id="newAdminImageUpload" style="display: none;" accept="image/*">
+                        <div onclick="document.getElementById('newAdminImageUpload').click()" style="position: absolute; bottom: 0; right: -5px; background: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.2); cursor: pointer; border: 1px solid #e2e8f0;">
+                            <i class="fas fa-camera" style="color: #64748b; font-size: 0.7rem;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="addAdminForm" onsubmit="event.preventDefault(); addAdminSubmit();">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; color: #475569; font-size: 0.85rem; font-weight: 500; margin-bottom: 5px;">Full Name *</label>
+                        <input type="text" id="newName" placeholder="Enter full name" required style="width: 100%; padding: 10px 15px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 0.95rem; outline: none; box-sizing: border-box; color: #1e293b;">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; color: #475569; font-size: 0.85rem; font-weight: 500; margin-bottom: 5px;">Email Address *</label>
+                        <input type="email" id="newEmail" placeholder="admin@jusoor.sa" required style="width: 100%; padding: 10px 15px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 0.95rem; outline: none; box-sizing: border-box; color: #1e293b;">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; color: #475569; font-size: 0.85rem; font-weight: 500; margin-bottom: 5px;">Phone Number</label>
+                        <input type="text" placeholder="+966 5x xxx xxxx" style="width: 100%; padding: 10px 15px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 0.95rem; outline: none; box-sizing: border-box; color: #1e293b;">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; color: #475569; font-size: 0.85rem; font-weight: 500; margin-bottom: 5px;">Role *</label>
+                        <select id="newRole" required style="width: 100%; padding: 10px 15px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 0.95rem; outline: none; box-sizing: border-box; color: #1e293b; background-color: white;">
+                            <option value="" disabled selected>Select a role</option>
+                            <option value="System Administrator">System Administrator</option>
+                            <option value="Content Moderator">Content Moderator</option>
+                            <option value="Super Admin">Super Admin</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; color: #475569; font-size: 0.85rem; font-weight: 500; margin-bottom: 5px;">Password *</label>
+                        <div style="position: relative;">
+                            <input type="password" id="newPassword" placeholder="Enter password" required style="width: 100%; padding: 10px 15px; padding-right: 40px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 0.95rem; outline: none; box-sizing: border-box; color: #1e293b;">
+                            <i class="far fa-eye" onclick="togglePasswordVisibility('newPassword', this)" style="position: absolute; right: 15px; top: 12px; color: #94a3b8; cursor: pointer;"></i>
+                        </div>
+                    </div>
+
+                    <button type="submit" style="width: 100%; padding: 12px; background-color: #22c55e; color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 0.95rem; cursor: pointer;">Add Admin</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleEditMode(isEdit) {
+            document.getElementById('personalInfoView').style.display = isEdit ? 'none' : 'block';
+            document.getElementById('personalInfoEdit').style.display = isEdit ? 'block' : 'none';
+        }
+
+        function saveProfileChanges() {
+            const newName = document.getElementById('editFullName').value;
+            const newEmail = document.getElementById('editEmail').value;
+            const newPhone = document.getElementById('editPhone').value;
+
+            document.getElementById('viewFullName').textContent = newName;
+            document.getElementById('viewEmail').textContent = newEmail;
+            document.getElementById('viewPhone').textContent = newPhone;
+            
+            document.getElementById('sidebarName').textContent = newName;
+            document.getElementById('sidebarEmail').textContent = newEmail;
+            
+            toggleEditMode(false);
+        }
+
+        function toggleAddAdminModal(show) {
+            document.getElementById('addAdminOverlay').style.display = show ? 'flex' : 'none';
+        }
+
+        function togglePasswordVisibility(inputId, iconElement) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                iconElement.classList.remove('fa-eye');
+                iconElement.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                iconElement.classList.remove('fa-eye-slash');
+                iconElement.classList.add('fa-eye');
+            }
+        }
+
+        function addAdminSubmit() {
+            const name = document.getElementById('newName').value;
+            const email = document.getElementById('newEmail').value;
+            const role = document.getElementById('newRole').value;
+            
+            const initials = name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
+            
+            const tbody = document.getElementById('adminsTableBody');
+            const newRow = document.createElement('tr');
+            
+            const today = new Date().toISOString().split('T')[0];
+            
+            newRow.innerHTML = `
+                <td style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 28px; height: 28px; background-color: #3b82f6; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 600;">\${initials}</div>
+                    <span style="font-weight: 500;">\${name}</span>
+                </td>
+                <td>\${email}</td>
+                <td>\${role}</td>
+                <td><span class="badge badge-active">Active</span></td>
+                <td>\${today}</td>
+                <td>Never</td>
+                <td>
+                    <div style="position: relative; display: inline-block;">
+                        <button onclick="toggleActionDropdown(this)" style="background: white; border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px 10px; font-size: 0.75rem; color: #64748b; cursor: pointer; display: flex; align-items: center; gap: 5px;">Actions <i class="fas fa-caret-down"></i></button>
+                        <div class="action-dropdown" style="display: none; position: absolute; right: 0; top: 100%; margin-top: 5px; background: white; border: 1px solid #e2e8f0; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 160px; z-index: 10;">
+                            <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #1e293b; border-bottom: 1px solid #f1f5f9;">View Details</a>
+                            <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #1e293b; border-bottom: 1px solid #f1f5f9;">Edit Admin</a>
+                            <a href="#" style="display: block; padding: 10px 15px; text-decoration: none; font-size: 0.8rem; color: #e11d48;">Delete Admin</a>
+                        </div>
+                    </div>
+                </td>
+            `;
+            
+            tbody.insertBefore(newRow, tbody.firstChild);
+            toggleAddAdminModal(false);
+            document.getElementById('addAdminForm').reset();
+        }
+
+        function toggleActionDropdown(btn) {
+            document.querySelectorAll('.action-dropdown').forEach(dropdown => {
+                if (dropdown !== btn.nextElementSibling) {
+                    dropdown.style.display = 'none';
+                }
+            });
+            const dropdown = btn.nextElementSibling;
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.position-relative') && !event.target.closest('button[onclick^="toggleAction"]')) {
+                document.querySelectorAll('.action-dropdown').forEach(dropdown => {
+                    dropdown.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+

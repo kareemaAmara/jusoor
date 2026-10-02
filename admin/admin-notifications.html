@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Notifications</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+        /* Admin specific overrides */
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; margin: 0; }
+        .dashboard-wrapper { display: flex; min-height: 100vh; }
+        .admin-sidebar {
+            width: 260px;
+            background-color: #1e293b !important;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        .admin-sidebar .nav-item {
+            color: #94a3b8;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin: 0 10px 5px 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .admin-sidebar .nav-item:hover {
+            color: white;
+            background-color: rgba(255,255,255,0.05);
+        }
+        .admin-sidebar .nav-item.active {
+            background-color: #22c55e !important;
+            color: white !important;
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 30px 40px;
+            background-color: #f1f5f9;
+        }
+
+        .filter-pill {
+            padding: 8px 16px;
+            background-color: white;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-pill.active {
+            background-color: #1e293b;
+            color: white;
+            border-color: #1e293b;
+        }
+
+        .filter-pill:hover:not(.active) {
+            background-color: #f1f5f9;
+        }
+
+        .notification-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .notification-card.unread {
+            border-left: 4px solid #1e293b;
+        }
+
+        .notification-icon-wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        .unread-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #1e293b;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        .badge {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        
+        /* Category Colors */
+        .bg-org { background-color: #f3e8ff; color: #a855f7; }
+        .bg-verify { background-color: #dcfce7; color: #16a34a; }
+        .bg-user { background-color: #e0f2fe; color: #0ea5e9; }
+        .bg-opp { background-color: #fef3c7; color: #d97706; }
+        .bg-report { background-color: #fee2e2; color: #ef4444; }
+        .bg-sys { background-color: #f1f5f9; color: #64748b; }
+
+        .btn-link {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        .btn-read { color: #3b82f6; }
+        .btn-delete { color: #ef4444; }
+
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header" style="border-bottom: 1px solid #334155; padding: 20px 0; margin-bottom: 20px;">
+                <a href="#" class="logo" style="text-decoration: none; display: flex; align-items: center; gap: 10px; padding: 0 15px;">
+                    <img src="../image/logo.png" alt="Jusoor Logo" style="width: 40px; height: 40px; object-fit: contain; border-radius: 8px;">
+                    <div class="logo-text">
+                        <h1 style="font-size: 1.1rem; margin: 0; letter-spacing: 1px; color: white;">JUSOOR</h1>
+                        <p style="font-size: 0.65rem; margin: 0; color: #94a3b8;">Admin Panel</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav" style="padding: 0; flex: 1;">
+                <a href="admin-dashboard.html" class="nav-item">
+                    <i class="fas fa-th-large" style="width: 25px;"></i> Dashboard
+                </a>
+                <a href="admin-users.html" class="nav-item">
+                    <i class="fas fa-user-friends" style="width: 25px;"></i> Users
+                </a>
+                <a href="admin-organizations.html" class="nav-item">
+                    <i class="far fa-building" style="width: 25px;"></i> Organizations
+                </a>
+                <a href="admin-verification.html" class="nav-item">
+                    <i class="fas fa-shield-alt" style="width: 25px;"></i> Verification
+                </a>
+                <a href="admin-reports.html" class="nav-item">
+                    <i class="far fa-chart-bar" style="width: 25px;"></i> Reports
+                </a>
+                <a href="admin-notifications.html" class="nav-item active">
+                    <i class="far fa-bell" style="width: 25px;"></i> Notifications
+                </a>
+                <a href="admin-profile.html" class="nav-item">
+                    <i class="far fa-user-circle" style="width: 25px;"></i> Admin Profile
+                </a>
+                <a href="../index.html" class="nav-item" style="margin-top: 20px;">
+                    <i class="fas fa-sign-out-alt" style="width: 25px;"></i> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                <div>
+                    <h2 style="margin: 0; color: #0f172a; font-weight: 700; font-size: 1.5rem;">Notifications</h2>
+                    <p id="unreadCountText" style="margin: 5px 0 0 0; color: #64748b; font-size: 0.95rem;">4 unread notifications</p>
+                </div>
+                <button onclick="markAllAsRead()" style="background: none; border: none; color: #3b82f6; font-size: 0.9rem; cursor: pointer; padding: 5px;">Mark all as read</button>
+            </div>
+
+            <!-- Filters -->
+            <div style="display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap;" id="filtersContainer">
+                <button class="filter-pill active" data-filter="all">All</button>
+                <button class="filter-pill" data-filter="Organization">Organizations <span style="font-size: 0.75rem; color: #94a3b8;">(1)</span></button>
+                <button class="filter-pill" data-filter="User">Users <span style="font-size: 0.75rem; color: #94a3b8;">(2)</span></button>
+                <button class="filter-pill" data-filter="Opportunity">Opportunities <span style="font-size: 0.75rem; color: #94a3b8;">(1)</span></button>
+                <button class="filter-pill" data-filter="Report">Reported <span style="font-size: 0.75rem; color: #94a3b8;">(1)</span></button>
+                <button class="filter-pill" data-filter="Verification">Verification <span style="font-size: 0.75rem; color: #94a3b8;">(1)</span></button>
+                <button class="filter-pill" data-filter="System">System <span style="font-size: 0.75rem; color: #94a3b8;">(1)</span></button>
+            </div>
+
+            <!-- Notification List -->
+            <div id="notificationsList">
+                
+                <div class="notification-card unread" data-category="Organization">
+                    <div class="notification-icon-wrapper bg-org">
+                        <i class="far fa-building"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <h4 style="margin: 0; color: #1e293b; font-size: 1rem; font-weight: 600;">New Organization Registration</h4>
+                            <span class="unread-dot"></span>
+                            <span class="badge bg-org">Organization</span>
+                        </div>
+                        <p style="margin: 0 0 10px 0; color: #475569; font-size: 0.9rem;">Tech4Good has submitted a registration request and is awaiting verification.</p>
+                        <div style="display: flex; align-items: center;">
+                            <span style="color: #94a3b8; font-size: 0.8rem; margin-right: 15px;">10 min ago</span>
+                            <button class="btn-link btn-read" onclick="markAsRead(this)">Mark as read</button>
+                            <button class="btn-link btn-delete" onclick="deleteNotification(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notification-card unread" data-category="Verification">
+                    <div class="notification-icon-wrapper bg-verify">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <h4 style="margin: 0; color: #1e293b; font-size: 1rem; font-weight: 600;">Verification Request</h4>
+                            <span class="unread-dot"></span>
+                            <span class="badge bg-verify">Verification</span>
+                        </div>
+                        <p style="margin: 0 0 10px 0; color: #475569; font-size: 0.9rem;">Salam Relief has submitted documents for organization verification.</p>
+                        <div style="display: flex; align-items: center;">
+                            <span style="color: #94a3b8; font-size: 0.8rem; margin-right: 15px;">25 min ago</span>
+                            <button class="btn-link btn-read" onclick="markAsRead(this)">Mark as read</button>
+                            <button class="btn-link btn-delete" onclick="deleteNotification(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notification-card unread" data-category="User">
+                    <div class="notification-icon-wrapper bg-user">
+                        <i class="far fa-user"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <h4 style="margin: 0; color: #1e293b; font-size: 1rem; font-weight: 600;">New User Registration</h4>
+                            <span class="unread-dot"></span>
+                            <span class="badge bg-user">User</span>
+                        </div>
+                        <p style="margin: 0 0 10px 0; color: #475569; font-size: 0.9rem;">Fatima Zahra joined as a volunteer.</p>
+                        <div style="display: flex; align-items: center;">
+                            <span style="color: #94a3b8; font-size: 0.8rem; margin-right: 15px;">1 hr ago</span>
+                            <button class="btn-link btn-read" onclick="markAsRead(this)">Mark as read</button>
+                            <button class="btn-link btn-delete" onclick="deleteNotification(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notification-card" data-category="Opportunity">
+                    <div class="notification-icon-wrapper bg-opp">
+                        <i class="far fa-clipboard"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <h4 style="margin: 0; color: #1e293b; font-size: 1rem; font-weight: 600;">New Opportunity Posted</h4>
+                            <span class="badge bg-opp" style="margin-left: 10px;">Opportunity</span>
+                        </div>
+                        <p style="margin: 0 0 10px 0; color: #475569; font-size: 0.9rem;">Green Earth SA posted "Beach Cleanup Drive" with 40 volunteer slots.</p>
+                        <div style="display: flex; align-items: center;">
+                            <span style="color: #94a3b8; font-size: 0.8rem; margin-right: 15px;">2 hrs ago</span>
+                            <button class="btn-link btn-delete" onclick="deleteNotification(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notification-card unread" data-category="Report">
+                    <div class="notification-icon-wrapper bg-report">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <h4 style="margin: 0; color: #1e293b; font-size: 1rem; font-weight: 600;">Reported Content</h4>
+                            <span class="unread-dot"></span>
+                            <span class="badge bg-report">Report</span>
+                        </div>
+                        <p style="margin: 0 0 10px 0; color: #475569; font-size: 0.9rem;">A user reported opportunity #209 for inappropriate content.</p>
+                        <div style="display: flex; align-items: center;">
+                            <span style="color: #94a3b8; font-size: 0.8rem; margin-right: 15px;">3 hrs ago</span>
+                            <button class="btn-link btn-read" onclick="markAsRead(this)">Mark as read</button>
+                            <button class="btn-link btn-delete" onclick="deleteNotification(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notification-card" data-category="System">
+                    <div class="notification-icon-wrapper bg-sys">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <h4 style="margin: 0; color: #1e293b; font-size: 1rem; font-weight: 600;">System Alert</h4>
+                            <span class="badge bg-sys" style="margin-left: 10px;">System</span>
+                        </div>
+                        <p style="margin: 0 0 10px 0; color: #475569; font-size: 0.9rem;">Scheduled maintenance window: Sep 22, 2026 02:00-04:00 AST.</p>
+                        <div style="display: flex; align-items: center;">
+                            <span style="color: #94a3b8; font-size: 0.8rem; margin-right: 15px;">5 hrs ago</span>
+                            <button class="btn-link btn-delete" onclick="deleteNotification(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notification-card" data-category="User">
+                    <div class="notification-icon-wrapper bg-user">
+                        <i class="far fa-user"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <h4 style="margin: 0; color: #1e293b; font-size: 1rem; font-weight: 600;">New User Registration</h4>
+                            <span class="badge bg-user" style="margin-left: 10px;">User</span>
+                        </div>
+                        <p style="margin: 0 0 10px 0; color: #475569; font-size: 0.9rem;">Ahmed Sami joined as an organization representative.</p>
+                        <div style="display: flex; align-items: center;">
+                            <span style="color: #94a3b8; font-size: 0.8rem; margin-right: 15px;">8 hrs ago</span>
+                            <button class="btn-link btn-delete" onclick="deleteNotification(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Update Unread Count Text
+        function updateUnreadCount() {
+            const unreadCount = document.querySelectorAll('.notification-card.unread').length;
+            const textElement = document.getElementById('unreadCountText');
+            if (unreadCount === 0) {
+                textElement.textContent = 'No unread notifications';
+            } else if (unreadCount === 1) {
+                textElement.textContent = '1 unread notification';
+            } else {
+                textElement.textContent = unreadCount + ' unread notifications';
+            }
+        }
+
+        // Mark Single as Read
+        function markAsRead(btn) {
+            const card = btn.closest('.notification-card');
+            
+            // Remove unread border
+            card.classList.remove('unread');
+            
+            // Remove blue dot
+            const dot = card.querySelector('.unread-dot');
+            if (dot) {
+                dot.remove();
+            }
+            
+            // Adjust margin for badge if dot is removed so it spacing looks right
+            const badge = card.querySelector('.badge');
+            if (badge) {
+                badge.style.marginLeft = '10px';
+            }
+
+            // Remove the "Mark as read" button itself
+            btn.remove();
+
+            updateUnreadCount();
+        }
+
+        // Mark All as Read
+        function markAllAsRead() {
+            const readButtons = document.querySelectorAll('.btn-read');
+            readButtons.forEach(btn => {
+                markAsRead(btn);
+            });
+        }
+
+        // Delete Notification
+        function deleteNotification(btn) {
+            const card = btn.closest('.notification-card');
+            card.style.opacity = '0';
+            setTimeout(() => {
+                card.remove();
+                updateUnreadCount();
+            }, 300);
+        }
+
+        // Filter Logic
+        document.querySelectorAll('.filter-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                // Remove active class from all
+                document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+                
+                // Add active to clicked
+                pill.classList.add('active');
+
+                const filterValue = pill.getAttribute('data-filter');
+                const cards = document.querySelectorAll('.notification-card');
+
+                cards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Initialize count on load
+        updateUnreadCount();
+    </script>
+</body>
+</html>
+
+
+

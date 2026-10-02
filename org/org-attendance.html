@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Attendance Tracking</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .qr-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .qr-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        .qr-icon {
+            font-size: 3rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .qr-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        .qr-subtitle {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="bg-light dashboard-body">
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
+                    <img src="../image/logo.png" alt="Jusoor Logo" style="width: 32px; height: 32px; border-radius: 50%;">
+                    <div class="logo-text">
+                        <h1 style="font-size: 1.1rem; margin: 0; color: white;">JUSOOR</h1>
+                        <p style="font-size: 0.5rem; margin: 0; opacity: 0.8; color: white;">TURN YOUR TIME INTO EXPERIENCE</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="org-dashboard.html" class="nav-item">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="org-opportunities.html" class="nav-item">
+                    <i class="far fa-calendar-check"></i> Opportunities
+                </a>
+                <a href="org-applications.html" class="nav-item">
+                    <i class="far fa-file-alt"></i> Applications
+                </a>
+                <a href="org-volunteers.html" class="nav-item">
+                    <i class="fas fa-users"></i> Volunteers
+                </a>
+                <a href="org-attendance.html" class="nav-item active">
+                    <i class="fas fa-qrcode"></i> Attendance
+                </a>
+                <a href="org-reports.html" class="nav-item">
+                    <i class="far fa-chart-bar"></i> Reports
+                </a>
+                <a href="org-profile.html" class="nav-item">
+                    <i class="far fa-building"></i> Org Profile
+                </a>
+                <a href="../index.html" class="nav-item" style="margin-top: 20px;">
+                    <i class="fas fa-sign-out-alt" style="width: 25px;"></i> Logout
+                </a>
+            </nav>
+
+            <div class="sidebar-footer-card" style="background-color: #166534; padding: 15px; border-radius: 8px; margin: 15px; margin-top: auto; color: white;">
+                <h6 style="color: white; margin-bottom: 5px; font-weight: 600; display: flex; align-items: center; gap: 8px;"><i class="fas fa-shield-alt" style="color: #4ade80;"></i> Organization</h6>
+                <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.75rem; margin-bottom: 0;">Manage your opportunities</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Header -->
+            <header class="dashboard-header mb-4">
+                <div>
+                    <h2 style="font-weight: 600; color: #1e293b; margin-bottom: 5px;">Attendance Tracking</h2>
+                </div>
+            </header>
+
+            <!-- QR Code Section -->
+            <div class="qr-card">
+                <i class="fas fa-qrcode qr-icon"></i>
+                <div class="qr-title">QR Code Attendance</div>
+                <div class="qr-subtitle">Track volunteer attendance with QR codes</div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+

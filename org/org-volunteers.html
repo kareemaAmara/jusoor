@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Volunteer Management</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .vol-stat-card {
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+        }
+        .vol-stat-icon {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .vol-tabs-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .vol-tabs {
+            display: flex;
+            background-color: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        .vol-tab-btn {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .vol-tab-btn.active {
+            background-color: #1e293b;
+            color: white;
+            border-radius: 20px;
+        }
+        .vol-search {
+            margin-left: auto;
+            position: relative;
+        }
+        .vol-search i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+        .vol-search input {
+            padding: 8px 12px 8px 35px;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            outline: none;
+            font-size: 0.9rem;
+            width: 200px;
+        }
+        .volunteer-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #1e293b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+        .rating-stars {
+            color: #fbbf24;
+            font-size: 0.85rem;
+        }
+        .rating-stars.empty {
+            color: #e2e8f0;
+        }
+        .vol-section {
+            display: none;
+        }
+        .vol-section.active {
+            display: block;
+        }
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .status-present {
+            background-color: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #16a34a;
+        }
+        .status-absent {
+            background-color: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #dc2626;
+        }
+        .table-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body class="bg-light dashboard-body">
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
+                    <img src="../image/logo.png" alt="Jusoor Logo" style="width: 32px; height: 32px; border-radius: 50%;">
+                    <div class="logo-text">
+                        <h1 style="font-size: 1.1rem; margin: 0; color: white;">JUSOOR</h1>
+                        <p style="font-size: 0.5rem; margin: 0; opacity: 0.8; color: white;">TURN YOUR TIME INTO EXPERIENCE</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="org-dashboard.html" class="nav-item">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="org-opportunities.html" class="nav-item">
+                    <i class="far fa-calendar-check"></i> Opportunities
+                </a>
+                <a href="org-applications.html" class="nav-item">
+                    <i class="far fa-file-alt"></i> Applications
+                </a>
+                <a href="org-volunteers.html" class="nav-item active">
+                    <i class="fas fa-users"></i> Volunteers
+                </a>
+                <a href="org-attendance.html" class="nav-item">
+                    <i class="fas fa-qrcode"></i> Attendance
+                </a>
+                <a href="org-reports.html" class="nav-item">
+                    <i class="far fa-chart-bar"></i> Reports
+                </a>
+                <a href="org-profile.html" class="nav-item">
+                    <i class="far fa-building"></i> Org Profile
+                </a>
+                <a href="../index.html" class="nav-item" style="margin-top: 20px;">
+                    <i class="fas fa-sign-out-alt" style="width: 25px;"></i> Logout
+                </a>
+            </nav>
+
+            <div class="sidebar-footer-card" style="background-color: #166534; padding: 15px; border-radius: 8px; margin: 15px; margin-top: auto; color: white;">
+                <h6 style="color: white; margin-bottom: 5px; font-weight: 600; display: flex; align-items: center; gap: 8px;"><i class="fas fa-shield-alt" style="color: #4ade80;"></i> Organization</h6>
+                <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.75rem; margin-bottom: 0;">Manage your opportunities</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Header -->
+            <header class="dashboard-header mb-4">
+                <div>
+                    <h2 style="font-weight: 600; color: #1e293b; margin-bottom: 5px;">Volunteer Management</h2>
+                    <p class="text-muted text-sm mb-0">Track participation and performance of your volunteers</p>
+                </div>
+            </header>
+
+            <!-- Status Cards -->
+            <div class="stats-grid mb-4" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div class="vol-stat-card" style="background-color: #f1f5f9;">
+                    <div class="vol-stat-icon" style="color: #64748b;"><i class="fas fa-users"></i></div>
+                    <h3 style="font-size: 2rem; font-weight: 700; color: #0f172a; margin: 0 0 5px 0; line-height: 1;">5</h3>
+                    <div style="color: #64748b; font-size: 0.85rem;">Total Volunteers</div>
+                </div>
+                
+                <div class="vol-stat-card" style="background-color: #f0fdf4;">
+                    <div class="vol-stat-icon" style="color: #16a34a;"><i class="far fa-clock"></i></div>
+                    <h3 style="font-size: 2rem; font-weight: 700; color: #166534; margin: 0 0 5px 0; line-height: 1;">102 hrs</h3>
+                    <div style="color: #15803d; font-size: 0.85rem;">Total Hours</div>
+                </div>
+                
+                <div class="vol-stat-card" style="background-color: #faf5ff;">
+                    <div class="vol-stat-icon" style="color: #9333ea;"><i class="fas fa-user-check"></i></div>
+                    <h3 style="font-size: 2rem; font-weight: 700; color: #6b21a8; margin: 0 0 5px 0; line-height: 1;">94%</h3>
+                    <div style="color: #7e22ce; font-size: 0.85rem;">Avg. Attendance</div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="vol-tabs-container">
+                <div class="vol-tabs">
+                    <button class="vol-tab-btn active" data-target="volunteers-list">Volunteers List</button>
+                    <button class="vol-tab-btn" data-target="attendance">Attendance</button>
+                    <button class="vol-tab-btn" data-target="hours-log">Hours Log</button>
+                    <button class="vol-tab-btn" data-target="ratings">Ratings</button>
+                </div>
+                <div class="vol-search" id="dynamic-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+            </div>
+
+            <div class="content-box" style="padding: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                
+                <!-- 1. Volunteers List -->
+                <div id="volunteers-list" class="vol-section active">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid #e2e8f0; color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; background-color: white;">
+                                <th style="padding: 15px 20px; font-weight: 600;">Volunteer</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Contact</th>
+                                <th style="padding: 15px 20px; font-weight: 600; text-align: center;">Opportunities</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Hours</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Attendance</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar">A</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Ahmed Mahmoud</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.8rem;">
+                                    <div><i class="far fa-envelope"></i> ahmed@example.com</div>
+                                    <div><i class="fas fa-phone-alt" style="font-size: 0.7rem;"></i> +972-59-1234567</div>
+                                </td>
+                                <td style="padding: 15px 20px; text-align: center; font-weight: 600; color: #1e293b;">3</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;">24 <span style="font-weight: normal; color: #94a3b8; font-size: 0.8rem;">hrs</span></td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 50px; height: 6px; background-color: #e2e8f0; border-radius: 3px; overflow: hidden;">
+                                            <div style="width: 95%; height: 100%; background-color: #16a34a;"></div>
+                                        </div>
+                                        <span style="font-size: 0.8rem; color: #64748b;">95%</span>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span style="color: #64748b; margin-left: 5px;">4.5</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar">S</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Sara Ibrahim</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.8rem;">
+                                    <div><i class="far fa-envelope"></i> sara@example.com</div>
+                                    <div><i class="fas fa-phone-alt" style="font-size: 0.7rem;"></i> +972-59-2345678</div>
+                                </td>
+                                <td style="padding: 15px 20px; text-align: center; font-weight: 600; color: #1e293b;">2</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;">18 <span style="font-weight: normal; color: #94a3b8; font-size: 0.8rem;">hrs</span></td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 50px; height: 6px; background-color: #e2e8f0; border-radius: 3px; overflow: hidden;">
+                                            <div style="width: 100%; height: 100%; background-color: #16a34a;"></div>
+                                        </div>
+                                        <span style="font-size: 0.8rem; color: #64748b;">100%</span>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span style="color: #64748b; margin-left: 5px;">4.8</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar">Y</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Yousef Hassan</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.8rem;">
+                                    <div><i class="far fa-envelope"></i> yousef@example.com</div>
+                                    <div><i class="fas fa-phone-alt" style="font-size: 0.7rem;"></i> +972-59-5678901</div>
+                                </td>
+                                <td style="padding: 15px 20px; text-align: center; font-weight: 600; color: #1e293b;">1</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;">12 <span style="font-weight: normal; color: #94a3b8; font-size: 0.8rem;">hrs</span></td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 50px; height: 6px; background-color: #e2e8f0; border-radius: 3px; overflow: hidden;">
+                                            <div style="width: 85%; height: 100%; background-color: #16a34a;"></div>
+                                        </div>
+                                        <span style="font-size: 0.8rem; color: #64748b;">85%</span>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> <span style="color: #64748b; margin-left: 5px;">4.0</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar">N</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Nour Ahmed</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.8rem;">
+                                    <div><i class="far fa-envelope"></i> nour@example.com</div>
+                                    <div><i class="fas fa-phone-alt" style="font-size: 0.7rem;"></i> +972-59-6789012</div>
+                                </td>
+                                <td style="padding: 15px 20px; text-align: center; font-weight: 600; color: #1e293b;">2</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;">16 <span style="font-weight: normal; color: #94a3b8; font-size: 0.8rem;">hrs</span></td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 50px; height: 6px; background-color: #e2e8f0; border-radius: 3px; overflow: hidden;">
+                                            <div style="width: 90%; height: 100%; background-color: #16a34a;"></div>
+                                        </div>
+                                        <span style="font-size: 0.8rem; color: #64748b;">90%</span>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span style="color: #64748b; margin-left: 5px;">4.2</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar">M</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Mohammed Khalid</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.8rem;">
+                                    <div><i class="far fa-envelope"></i> mohammed@example.com</div>
+                                    <div><i class="fas fa-phone-alt" style="font-size: 0.7rem;"></i> +972-59-3456789</div>
+                                </td>
+                                <td style="padding: 15px 20px; text-align: center; font-weight: 600; color: #1e293b;">4</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;">32 <span style="font-weight: normal; color: #94a3b8; font-size: 0.8rem;">hrs</span></td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 50px; height: 6px; background-color: #e2e8f0; border-radius: 3px; overflow: hidden;">
+                                            <div style="width: 100%; height: 100%; background-color: #16a34a;"></div>
+                                        </div>
+                                        <span style="font-size: 0.8rem; color: #64748b;">100%</span>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span style="color: #64748b; margin-left: 5px;">4.7</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 2. Attendance -->
+                <div id="attendance" class="vol-section">
+                    <div class="table-header-row">
+                        <h4 style="margin: 0; color: #1e293b; font-size: 1rem; font-weight: 600;">Attendance Records</h4>
+                        <span style="color: #64748b; font-size: 0.85rem;">8 records</span>
+                    </div>
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid #e2e8f0; color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; background-color: white;">
+                                <th style="padding: 15px 20px; font-weight: 600;">Date</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Opportunity</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Volunteer</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;"><i class="far fa-calendar-alt" style="color: #22c55e; margin-right: 5px;"></i> 2024-04-15</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Children Support in Ramadan</td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">A</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Ahmed Mahmoud</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <span class="status-badge status-present"><i class="far fa-check-circle"></i> Present</span>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;"><i class="far fa-calendar-alt" style="color: #22c55e; margin-right: 5px;"></i> 2024-04-15</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Children Support in Ramadan</td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">S</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Sara Ibrahim</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <span class="status-badge status-present"><i class="far fa-check-circle"></i> Present</span>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;"><i class="far fa-calendar-alt" style="color: #22c55e; margin-right: 5px;"></i> 2024-04-15</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Children Support in Ramadan</td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">Y</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Yousef Hassan</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <span class="status-badge status-absent"><i class="far fa-times-circle"></i> Absent</span>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;"><i class="far fa-calendar-alt" style="color: #22c55e; margin-right: 5px;"></i> 2024-04-15</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Children Support in Ramadan</td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">M</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Mohammed Khalid</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <span class="status-badge status-present"><i class="far fa-check-circle"></i> Present</span>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;"><i class="far fa-calendar-alt" style="color: #22c55e; margin-right: 5px;"></i> 2024-05-20</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Beach Cleanup Campaign</td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">S</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Sara Ibrahim</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <span class="status-badge status-present"><i class="far fa-check-circle"></i> Present</span>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;"><i class="far fa-calendar-alt" style="color: #22c55e; margin-right: 5px;"></i> 2024-05-20</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Beach Cleanup Campaign</td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">Y</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Yousef Hassan</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <span class="status-badge status-present"><i class="far fa-check-circle"></i> Present</span>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;"><i class="far fa-calendar-alt" style="color: #22c55e; margin-right: 5px;"></i> 2024-05-20</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Beach Cleanup Campaign</td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">N</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Nour Ahmed</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <span class="status-badge status-present"><i class="far fa-check-circle"></i> Present</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;"><i class="far fa-calendar-alt" style="color: #22c55e; margin-right: 5px;"></i> 2024-05-20</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Beach Cleanup Campaign</td>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">M</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Mohammed Khalid</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <span class="status-badge status-present"><i class="far fa-check-circle"></i> Present</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 3. Hours Log -->
+                <div id="hours-log" class="vol-section">
+                    <div class="table-header-row">
+                        <h4 style="margin: 0; color: #1e293b; font-size: 1rem; font-weight: 600;">Volunteer Hours Log</h4>
+                        <span style="color: #64748b; font-size: 0.85rem;">Total: <span style="color: #16a34a; font-weight: 600;">102</span> hrs</span>
+                    </div>
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid #e2e8f0; color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; background-color: white;">
+                                <th style="padding: 15px 20px; font-weight: 600;">Volunteer</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Opportunity</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Date</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">A</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Ahmed Mahmoud</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Children Support in Ramadan</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">2024-04-15</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;"><i class="far fa-clock" style="margin-right: 5px;"></i> 6 hrs</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">A</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Ahmed Mahmoud</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Beach Cleanup Campaign</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">2024-05-20</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;"><i class="far fa-clock" style="margin-right: 5px;"></i> 4 hrs</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">A</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Ahmed Mahmoud</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">School Books Distribution</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">2024-03-01</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;"><i class="far fa-clock" style="margin-right: 5px;"></i> 8 hrs</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">S</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Sara Ibrahim</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Beach Cleanup Campaign</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">2024-05-20</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;"><i class="far fa-clock" style="margin-right: 5px;"></i> 4 hrs</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">S</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Sara Ibrahim</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Children Support in Ramadan</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">2024-04-15</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;"><i class="far fa-clock" style="margin-right: 5px;"></i> 6 hrs</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">Y</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Yousef Hassan</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Beach Cleanup Campaign</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">2024-05-20</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;"><i class="far fa-clock" style="margin-right: 5px;"></i> 4 hrs</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">N</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Nour Ahmed</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Beach Cleanup Campaign</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">2024-05-20</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;"><i class="far fa-clock" style="margin-right: 5px;"></i> 4 hrs</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">M</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Mohammed Khalid</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Children Support in Ramadan</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">2024-04-15</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;"><i class="far fa-clock" style="margin-right: 5px;"></i> 6 hrs</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar" style="width: 24px; height: 24px; font-size: 0.6rem; margin-right: 8px;">M</div>
+                                        <h6 style="margin: 0; color: #1e293b; font-size: 0.85rem; font-weight: 600;">Mohammed Khalid</h6>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">Beach Cleanup Campaign</td>
+                                <td style="padding: 15px 20px; color: #64748b; font-size: 0.85rem;">2024-05-20</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;"><i class="far fa-clock" style="margin-right: 5px;"></i> 4 hrs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 4. Ratings -->
+                <div id="ratings" class="vol-section">
+                    <div class="table-header-row">
+                        <div>
+                            <h4 style="margin: 0; color: #1e293b; font-size: 1rem; font-weight: 600;">Volunteer Ratings</h4>
+                            <span style="color: #94a3b8; font-size: 0.8rem;">Click the stars to update a volunteer's rating</span>
+                        </div>
+                    </div>
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid #e2e8f0; color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; background-color: white;">
+                                <th style="padding: 15px 20px; font-weight: 600;">Volunteer</th>
+                                <th style="padding: 15px 20px; font-weight: 600; text-align: center;">Opportunities</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Hours</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Current Rating</th>
+                                <th style="padding: 15px 20px; font-weight: 600;">Update Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar">A</div>
+                                        <div>
+                                            <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Ahmed Mahmoud</h6>
+                                            <div style="color: #94a3b8; font-size: 0.8rem;">ahmed@example.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; text-align: center; font-weight: 600; color: #1e293b;">3</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;">24 <span style="font-weight: normal; color: #94a3b8; font-size: 0.8rem;">hrs</span></td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span style="color: #64748b; margin-left: 5px;">4.5</span>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars" style="cursor: pointer; font-size: 1.1rem;">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star empty"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar">S</div>
+                                        <div>
+                                            <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Sara Ibrahim</h6>
+                                            <div style="color: #94a3b8; font-size: 0.8rem;">sara@example.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; text-align: center; font-weight: 600; color: #1e293b;">2</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;">18 <span style="font-weight: normal; color: #94a3b8; font-size: 0.8rem;">hrs</span></td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span style="color: #64748b; margin-left: 5px;">4.8</span>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars" style="cursor: pointer; font-size: 1.1rem;">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star empty"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar">Y</div>
+                                        <div>
+                                            <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Yousef Hassan</h6>
+                                            <div style="color: #94a3b8; font-size: 0.8rem;">yousef@example.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; text-align: center; font-weight: 600; color: #1e293b;">1</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;">12 <span style="font-weight: normal; color: #94a3b8; font-size: 0.8rem;">hrs</span></td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> <span style="color: #64748b; margin-left: 5px;">4.0</span>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars" style="cursor: pointer; font-size: 1.1rem;">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star empty"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e2e8f0;">
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar">N</div>
+                                        <div>
+                                            <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Nour Ahmed</h6>
+                                            <div style="color: #94a3b8; font-size: 0.8rem;">nour@example.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; text-align: center; font-weight: 600; color: #1e293b;">2</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;">16 <span style="font-weight: normal; color: #94a3b8; font-size: 0.8rem;">hrs</span></td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span style="color: #64748b; margin-left: 5px;">4.2</span>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars" style="cursor: pointer; font-size: 1.1rem;">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star empty"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 15px 20px;">
+                                    <div style="display: flex; align-items: center;">
+                                        <div class="volunteer-avatar">M</div>
+                                        <div>
+                                            <h6 style="margin: 0; color: #1e293b; font-size: 0.9rem; font-weight: 600;">Mohammed Khalid</h6>
+                                            <div style="color: #94a3b8; font-size: 0.8rem;">mohammed@example.com</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px; text-align: center; font-weight: 600; color: #1e293b;">4</td>
+                                <td style="padding: 15px 20px; color: #16a34a; font-weight: 600;">32 <span style="font-weight: normal; color: #94a3b8; font-size: 0.8rem;">hrs</span></td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span style="color: #64748b; margin-left: 5px;">4.7</span>
+                                    </div>
+                                </td>
+                                <td style="padding: 15px 20px;">
+                                    <div class="rating-stars" style="cursor: pointer; font-size: 1.1rem;">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star empty"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabBtns = document.querySelectorAll('.vol-tab-btn');
+            const sections = document.querySelectorAll('.vol-section');
+            const searchContainer = document.getElementById('dynamic-search');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active from all tabs
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    // Add active to clicked
+                    btn.classList.add('active');
+
+                    // Hide all sections
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // Show target section
+                    const targetId = btn.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+
+                    // Toggle search input visibility (only show for volunteers-list)
+                    if (targetId === 'volunteers-list') {
+                        searchContainer.style.display = 'block';
+                    } else {
+                        searchContainer.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+

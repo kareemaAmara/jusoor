@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Verify Code</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body.forgot-password-page {
+            background-color: #e8f4ed;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .forgot-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .shield-icon {
+            background-color: #e8f4ed;
+            color: #388e3c;
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .forgot-box h2 {
+            color: #1a202c;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .forgot-box p.subtitle {
+            color: #718096;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Step Progress Bar */
+        .steps-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding: 0 20px;
+        }
+
+        .steps-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background-color: #e2e8f0;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            height: 3px;
+            background-color: #388e3c;
+            z-index: 1;
+            transform: translateY(-50%);
+            width: calc(50% - 20px);
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-circle.active, .step-circle.completed {
+            background-color: #388e3c;
+            color: #ffffff;
+        }
+
+        .alert-success {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #16a34a;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .verification-text {
+            color: #718096;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .verification-text strong {
+            color: #388e3c;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .code-inputs {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-input {
+            width: 50px;
+            height: 60px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+        }
+
+        .code-input:focus {
+            border-color: #388e3c;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(56, 142, 60, 0.1);
+        }
+
+        .resend-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .resend-section span {
+            color: #718096;
+        }
+
+        .resend-section .resend-link {
+            color: #a0aec0;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .buttons-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-edit {
+            background-color: #ffffff;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+            width: 40%;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-edit:hover {
+            background-color: #f7fafc;
+        }
+
+        .btn-submit {
+            background-color: #388e3c;
+            color: #ffffff;
+            border: none;
+            width: 60%;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #2e7d32;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #edf2f7;
+            margin: 2rem 0;
+        }
+
+        .login-link {
+            color: #718096;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+
+        .login-link a {
+            color: #388e3c;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="forgot-password-page">
+    <div class="forgot-box">
+        <div class="shield-icon">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        
+        <h2>Enter Verification Code</h2>
+        <p class="subtitle">Enter the code sent to your email address</p>
+        
+        <div class="steps-wrapper">
+            <div class="progress-line"></div>
+            <div class="step-circle completed"><i class="fas fa-check"></i></div>
+            <div class="step-circle active">2</div>
+            <div class="step-circle">3</div>
+        </div>
+
+        <div class="alert-success">
+            <i class="fas fa-check-circle"></i> Verification code sent to your email
+        </div>
+
+        <div class="verification-text">
+            We have sent a 6-digit verification code to
+            <strong id="displayEmail">loading...</strong>
+        </div>
+
+        <form id="verifyCodeForm">
+            <div class="code-inputs">
+                <input type="text" class="code-input" maxlength="1" required>
+                <input type="text" class="code-input" maxlength="1" required>
+                <input type="text" class="code-input" maxlength="1" required>
+                <input type="text" class="code-input" maxlength="1" required>
+                <input type="text" class="code-input" maxlength="1" required>
+                <input type="text" class="code-input" maxlength="1" required>
+            </div>
+
+            <div class="resend-section">
+                <span>Didn't receive the code?</span>
+                <a href="#" class="resend-link">Resend (57s)</a>
+            </div>
+
+            <div class="buttons-row">
+                <button type="button" class="btn-edit" onclick="window.history.back()">Edit Email</button>
+                <button type="submit" class="btn-submit">Verify Code</button>
+            </div>
+        </form>
+
+        <div class="divider"></div>
+        
+        <div class="login-link">
+            Remembered your password? <a href="../volnteer/login.html">Log in</a>
+        </div>
+    </div>
+
+    <script>
+        // Get email from URL parameters
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+            
+            if (email) {
+                document.getElementById('displayEmail').textContent = email;
+            } else {
+                document.getElementById('displayEmail').textContent = "your email address";
+            }
+
+            // Auto-focus logic for code inputs
+            const inputs = document.querySelectorAll('.code-input');
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    if (this.value.length === 1) {
+                        if (index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    }
+                });
+                
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value.length === 0) {
+                        if (index > 0) {
+                            inputs[index - 1].focus();
+                        }
+                    }
+                });
+            });
+
+            // Redirect on form submit
+            document.getElementById('verifyCodeForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                window.location.href = 'reset-password.html';
+            });
+        });
+    </script>
+</body>
+</html>
+
+

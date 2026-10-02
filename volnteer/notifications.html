@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Notifications</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-light dashboard-body">
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
+                    <img src="../image/logo.png" alt="Jusoor Logo" style="width: 32px; height: 32px; border-radius: 50%;">
+                    <div class="logo-text">
+                        <h1 style="font-size: 1.1rem; margin: 0; color: white;">JUSOOR</h1>
+                        <p style="font-size: 0.5rem; margin: 0; opacity: 0.8; color: white;">TURN YOUR TIME INTO EXPERIENCE</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="applications.html" class="nav-item">
+                    <i class="far fa-file-alt"></i> My Applications
+                </a>
+                <a href="hours.html" class="nav-item">
+                    <i class="far fa-clock"></i> Volunteer Hours
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="far fa-user"></i> Profile
+                </a>
+                <a href="notifications.html" class="nav-item active">
+                    <i class="far fa-bell"></i> Notifications
+                </a>
+                <a href="../index.html" class="nav-item" style="margin-top: 20px;">
+                    <i class="fas fa-sign-out-alt" style="width: 25px;"></i> Logout
+                </a>
+            </nav>
+
+            <div class="sidebar-footer-card">
+                <div class="card-indicator"></div>
+                <h6>Volunteer</h6>
+                <p>Track your volunteer journey</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Header -->
+            <header class="dashboard-header mb-4">
+                <div>
+                    <h2>Notifications</h2>
+                    <p class="text-muted text-sm">Stay updated with your volunteer activities</p>
+                </div>
+                <button id="markAllReadBtn" class="btn btn-light border"><i class="fas fa-check mr-2"></i> Mark All as Read</button>
+            </header>
+
+            <!-- Filter Tabs -->
+            <div class="notif-filters mb-4">
+                <a href="#" class="notif-tab active" data-filter="all">All (5)</a>
+                <a href="#" class="notif-tab" data-filter="unread">Unread (2)</a>
+                <a href="#" class="notif-tab" data-filter="read">Read (3)</a>
+            </div>
+
+            <!-- Notifications List -->
+            <div class="notifications-container">
+                
+                <!-- Notification 1 (Unread) -->
+                <div class="notification-card unread-notif mb-3" data-status="unread">
+                    <div class="notif-icon text-green">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h6 class="mb-1 text-dark">Application Accepted</h6>
+                            <span class="badge badge-green ml-2">New</span>
+                        </div>
+                        <p class="text-sm text-muted mb-2">Your application for Environmental Cleanup Campaign has been accepted!</p>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <span class="text-xs text-muted">2 hours ago</span>
+                            <a href="#" class="text-dark text-sm font-weight-medium notif-action">Mark as read</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification 2 (Unread) -->
+                <div class="notification-card unread-notif mb-3" data-status="unread">
+                    <div class="notif-icon text-dark">
+                        <i class="far fa-calendar"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h6 class="mb-1 text-dark">Upcoming Activity Tomorrow</h6>
+                            <span class="badge badge-green ml-2">New</span>
+                        </div>
+                        <p class="text-sm text-muted mb-2">Reminder: Education Support Program starts tomorrow at 2:00 PM</p>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <span class="text-xs text-muted">5 hours ago</span>
+                            <a href="#" class="text-dark text-sm font-weight-medium notif-action">Mark as read</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification 3 (Read) -->
+                <div class="notification-card read-notif mb-3" data-status="read">
+                    <div class="notif-icon text-yellow">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h6 class="mb-1 text-dark">New Achievement Unlocked!</h6>
+                        </div>
+                        <p class="text-sm text-muted mb-2">You've completed 100 volunteer hours! You earned the 'Century Club' badge.</p>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <span class="text-xs text-muted">1 day ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification 4 (Read) -->
+                <div class="notification-card read-notif mb-3" data-status="read">
+                    <div class="notif-icon text-blue">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h6 class="mb-1 text-dark">New Opportunities Available</h6>
+                        </div>
+                        <p class="text-sm text-muted mb-2">5 new volunteer opportunities matching your interests have been posted.</p>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <span class="text-xs text-muted">2 days ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification 5 (Read) -->
+                <div class="notification-card read-notif mb-4" data-status="read">
+                    <div class="notif-icon text-muted">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h6 class="mb-1 text-dark">Profile Incomplete</h6>
+                        </div>
+                        <p class="text-sm text-muted mb-2">Complete your profile to get better opportunity recommendations.</p>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <span class="text-xs text-muted">3 days ago</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+

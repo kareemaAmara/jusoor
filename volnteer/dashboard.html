@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Volunteer Dashboard</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-light dashboard-body">
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
+                    <img src="../image/logo.png" alt="Jusoor Logo" style="width: 32px; height: 32px; border-radius: 50%;">
+                    <div class="logo-text">
+                        <h1 style="font-size: 1.1rem; margin: 0; color: white;">JUSOOR</h1>
+                        <p style="font-size: 0.5rem; margin: 0; opacity: 0.8; color: white;">TURN YOUR TIME INTO EXPERIENCE</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="applications.html" class="nav-item">
+                    <i class="far fa-file-alt"></i> My Applications
+                </a>
+                <a href="hours.html" class="nav-item">
+                    <i class="far fa-clock"></i> Volunteer Hours
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="far fa-user"></i> Profile
+                </a>
+                <a href="notifications.html" class="nav-item">
+                    <i class="far fa-bell"></i> Notifications
+                </a>
+                <a href="../index.html" class="nav-item" style="margin-top: 20px;">
+                    <i class="fas fa-sign-out-alt" style="width: 25px;"></i> Logout
+                </a>
+            </nav>
+
+            <div class="sidebar-footer-card">
+                <div class="card-indicator"></div>
+                <h6>Volunteer</h6>
+                <p>Track your volunteer journey</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Header -->
+            <header class="dashboard-header mb-4">
+                <div>
+                    <h2>Dashboard</h2>
+                    <p class="text-muted text-sm">Welcome back, Ahmed! Here's your volunteer journey overview.</p>
+                </div>
+                <a href="opportunities.html" class="btn btn-primary">Browse Opportunities</a>
+            </header>
+
+            <!-- Stats Row -->
+            <div class="stats-grid mb-4">
+                <div class="stat-card content-box">
+                    <div class="stat-header">
+                        <span class="text-muted text-sm">Total Hours</span>
+                        <i class="far fa-clock text-green"></i>
+                    </div>
+                    <h3>124</h3>
+                    <p class="stat-trend text-green"><i class="fas fa-arrow-up"></i> 12% from last month</p>
+                </div>
+                <div class="stat-card content-box">
+                    <div class="stat-header">
+                        <span class="text-muted text-sm">Accepted Applications</span>
+                        <i class="far fa-file-check text-green"></i>
+                    </div>
+                    <h3>8</h3>
+                    <p class="stat-trend text-muted">Out of 12 applications</p>
+                </div>
+                <div class="stat-card content-box">
+                    <div class="stat-header">
+                        <span class="text-muted text-sm">Upcoming Activities</span>
+                        <i class="far fa-calendar-alt text-green"></i>
+                    </div>
+                    <h3>3</h3>
+                    <p class="stat-trend text-white">.</p> <!-- Spacer to match height -->
+                </div>
+                <div class="stat-card content-box">
+                    <div class="stat-header">
+                        <span class="text-muted text-sm">Impact Score</span>
+                        <i class="fas fa-chart-line text-green"></i>
+                    </div>
+                    <h3>450</h3>
+                    <p class="stat-trend text-green"><i class="fas fa-arrow-up"></i> 8% from last month</p>
+                </div>
+            </div>
+
+            <!-- Goal Section -->
+            <div class="content-box mb-4">
+                <div class="d-flex justify-content-between mb-1">
+                    <h5 class="mb-0">Monthly Volunteer Goal</h5>
+                    <i class="fas fa-bullseye text-green"></i>
+                </div>
+                <p class="text-sm text-muted mb-4">May 2026</p>
+                
+                <div class="d-flex justify-content-between align-items-end mb-2">
+                    <h3 class="mb-0">15 hours</h3>
+                    <span class="text-sm text-muted">of 20 hours goal</span>
+                </div>
+                <div class="progress-track mb-2">
+                    <div class="progress-fill" style="width: 75%;"></div>
+                </div>
+                <p class="text-sm text-muted">You're doing great! Just 5 more hours to reach your goal.</p>
+            </div>
+
+            <!-- Two Columns Section -->
+            <div class="dashboard-split mb-4">
+                <!-- Upcoming Activities -->
+                <div class="content-box">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-0">Upcoming Activities</h5>
+                        <a href="#" class="text-sm text-dark font-weight-medium">View All</a>
+                    </div>
+                    
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="far fa-calendar"></i></div>
+                            <div class="activity-details">
+                                <h6>Environmental Cleanup Campaign</h6>
+                                <p class="text-muted text-xs mb-1">Green Gaza Initiative</p>
+                                <p class="text-xs text-muted">May 30, 2026 &nbsp;&nbsp; 9:00 AM &nbsp;&nbsp; 4h</p>
+                            </div>
+                            <span class="badge badge-green">confirmed</span>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="far fa-calendar"></i></div>
+                            <div class="activity-details">
+                                <h6>Education Support Program</h6>
+                                <p class="text-muted text-xs mb-1">Future Scholars</p>
+                                <p class="text-xs text-muted">June 8, 2026 &nbsp;&nbsp; 2:00 PM &nbsp;&nbsp; 6h</p>
+                            </div>
+                            <span class="badge badge-green">confirmed</span>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon"><i class="far fa-calendar"></i></div>
+                            <div class="activity-details">
+                                <h6>Medical Awareness Campaign</h6>
+                                <p class="text-muted text-xs mb-1">Health First</p>
+                                <p class="text-xs text-muted">June 15, 2026 &nbsp;&nbsp; 10:00 AM &nbsp;&nbsp; 4h</p>
+                            </div>
+                            <span class="badge badge-gray">pending</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Applications -->
+                <div class="content-box">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-0">Recent Applications</h5>
+                        <a href="#" class="text-sm text-dark font-weight-medium">View All</a>
+                    </div>
+                    
+                    <div class="application-list">
+                        <div class="application-item">
+                            <div class="app-details">
+                                <h6>Youth Mentorship Program</h6>
+                                <p class="text-muted text-xs mb-1">Bright Futures</p>
+                                <p class="text-xs text-muted">Applied: May 15, 2026</p>
+                            </div>
+                            <span class="badge badge-green">accepted</span>
+                        </div>
+                        <div class="application-item">
+                            <div class="app-details">
+                                <h6>Food Distribution Drive</h6>
+                                <p class="text-muted text-xs mb-1">Community Care</p>
+                                <p class="text-xs text-muted">Applied: May 18, 2026</p>
+                            </div>
+                            <span class="badge badge-gray">pending</span>
+                        </div>
+                        <div class="application-item">
+                            <div class="app-details">
+                                <h6>Tree Planting Initiative</h6>
+                                <p class="text-muted text-xs mb-1">Nature First</p>
+                                <p class="text-xs text-muted">Applied: May 20, 2026</p>
+                            </div>
+                            <span class="badge badge-green">accepted</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements Section -->
+            <div class="content-box mb-4">
+                <div class="d-flex justify-content-between mb-4">
+                    <h5 class="mb-0">Achievements</h5>
+                    <i class="fas fa-medal text-green"></i>
+                </div>
+                
+                <div class="achievements-grid">
+                    <div class="achievement-card active-achievement">
+                        <i class="fas fa-medal mb-2"></i>
+                        <h6>First Step</h6>
+                        <p class="text-xs text-muted">Complete your first volunteer activity</p>
+                    </div>
+                    <div class="achievement-card active-achievement">
+                        <i class="fas fa-medal mb-2"></i>
+                        <h6>Team Player</h6>
+                        <p class="text-xs text-muted">Volunteer with 5 different organizations</p>
+                    </div>
+                    <div class="achievement-card active-achievement">
+                        <i class="fas fa-medal mb-2"></i>
+                        <h6>Century Club</h6>
+                        <p class="text-xs text-muted">Complete 100 volunteer hours</p>
+                    </div>
+                    <div class="achievement-card inactive-achievement">
+                        <i class="fas fa-medal mb-2"></i>
+                        <h6>Leader</h6>
+                        <p class="text-xs text-muted">Lead a volunteer project</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended Section -->
+            <div class="mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="mb-0">Recommended For You</h5>
+                    <a href="opportunities.html" class="btn btn-light border btn-sm">See More</a>
+                </div>
+                
+                <div class="recommended-grid">
+                    <div class="opp-card detailed-card" style="box-shadow: none;">
+                        <div class="opp-content">
+                            <div class="card-title-row">
+                                <h4 class="opp-title" style="font-size: 1.1rem;">Community Garden Project</h4>
+                                <span class="tag tag-green">Environment</span>
+                            </div>
+                            <p class="opp-company text-sm mb-3">Green Spaces Gaza</p>
+                            
+                            <div class="opp-meta-list" style="grid-template-columns: 1fr;">
+                                <div class="meta-item"><i class="fas fa-map-marker-alt"></i> Gaza City</div>
+                                <div class="meta-item"><i class="far fa-calendar-alt"></i> June 20, 2026</div>
+                                <div class="meta-item"><i class="far fa-clock"></i> 5 hours</div>
+                                <div class="meta-item"><i class="fas fa-user-friends"></i> 18/30 volunteers</div>
+                            </div>
+                            <a href="details.html?id=1" class="btn btn-primary btn-full mt-3">View Details</a>
+                        </div>
+                    </div>
+                    
+                    <div class="opp-card detailed-card" style="box-shadow: none;">
+                        <div class="opp-content">
+                            <div class="card-title-row">
+                                <h4 class="opp-title" style="font-size: 1.1rem;">Digital Literacy Workshop</h4>
+                                <span class="tag tag-green">Education</span>
+                            </div>
+                            <p class="opp-company text-sm mb-3">Tech For All</p>
+                            
+                            <div class="opp-meta-list" style="grid-template-columns: 1fr;">
+                                <div class="meta-item"><i class="fas fa-map-marker-alt"></i> Khan Younis</div>
+                                <div class="meta-item"><i class="far fa-calendar-alt"></i> June 25, 2026</div>
+                                <div class="meta-item"><i class="far fa-clock"></i> 4 hours</div>
+                                <div class="meta-item"><i class="fas fa-user-friends"></i> 10/15 volunteers</div>
+                            </div>
+                            <a href="details.html?id=3" class="btn btn-primary btn-full mt-3">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Script -->
+    <script src="../js/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+

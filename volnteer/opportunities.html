@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Browse Opportunities</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-light">
+    <!-- Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo" style="text-decoration: none;">
+                <img src="../image/logo.png" alt="Jusoor Logo">
+                <div class="logo-text">
+                    <h1>JUSOOR</h1>
+                    <p>TURN YOUR TIME INTO EXPERIENCE</p>
+                </div>
+            </a>
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="opportunities.html">Opportunities</a>
+                <a href="../index.html#about">About</a>
+            </nav>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-text">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="opportunities-page" style="margin-top: 80px;">
+        <div class="container pt-5">
+            <div class="page-header mb-4">
+                <h2>Browse Opportunities</h2>
+                <p class="text-muted">Find volunteer opportunities that match your interests and skills</p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-bar-container mb-5">
+                <div class="search-input-wrapper">
+                    <input type="text" placeholder="Search opportunities..." class="search-input">
+                    <button class="btn btn-primary search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <button class="btn btn-light border btn-filters-toggle"><i class="fas fa-sliders-h"></i> Filters</button>
+            </div>
+
+            <div class="browse-layout">
+                <!-- Sidebar Filters -->
+                <aside class="filters-sidebar">
+                    <div class="filter-box">
+                        <h4 class="mb-3">Filters</h4>
+                        
+                        <div class="filter-group">
+                            <h5 class="filter-title">Category</h5>
+                            <label class="custom-checkbox">Environment<input type="checkbox"><span class="checkmark"></span></label>
+                            <label class="custom-checkbox">Education<input type="checkbox"><span class="checkmark"></span></label>
+                            <label class="custom-checkbox">Healthcare<input type="checkbox"><span class="checkmark"></span></label>
+                            <label class="custom-checkbox">Social Services<input type="checkbox"><span class="checkmark"></span></label>
+                            <label class="custom-checkbox">Animal Welfare<input type="checkbox"><span class="checkmark"></span></label>
+                            <label class="custom-checkbox">Arts & Culture<input type="checkbox"><span class="checkmark"></span></label>
+                        </div>
+
+                        <div class="filter-group">
+                            <h5 class="filter-title">Location</h5>
+                            <label class="custom-checkbox">Gaza City<input type="checkbox"><span class="checkmark"></span></label>
+                            <label class="custom-checkbox">Khan Younis<input type="checkbox"><span class="checkmark"></span></label>
+                            <label class="custom-checkbox">Rafah<input type="checkbox"><span class="checkmark"></span></label>
+                            <label class="custom-checkbox">Deir al-Balah<input type="checkbox"><span class="checkmark"></span></label>
+                            <label class="custom-checkbox">Jabalia<input type="checkbox"><span class="checkmark"></span></label>
+                        </div>
+
+                        <div class="filter-group">
+                            <h5 class="filter-title">Time Commitment</h5>
+                            <label class="custom-checkbox">1-3 hours<input type="checkbox"><span class="checkmark"></span></label>
+                            <label class="custom-checkbox">4-6 hours<input type="checkbox"><span class="checkmark"></span></label>
+                            <label class="custom-checkbox">7+ hours<input type="checkbox"><span class="checkmark"></span></label>
+                        </div>
+
+                        <button class="btn btn-light border btn-full mt-3 clear-filters" onclick="document.querySelectorAll('.filters-sidebar input[type=checkbox]').forEach(cb => cb.checked = false)">Clear Filters</button>
+                    </div>
+                </aside>
+
+                <!-- Results Section -->
+                <div class="results-section">
+                    <div class="results-header mb-4 d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Showing 6 opportunities</span>
+                        <div class="sort-by">
+                            <span class="text-muted mr-2">Sort by:</span>
+                            <select class="form-control" style="width: auto; display: inline-block;">
+                                <option>Latest</option>
+                                <option>Oldest</option>
+                                <option>Most Popular</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="opportunities-grid-3">
+                        <!-- Card 1 -->
+                        <div class="opp-card detailed-card">
+                            <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Environmental Cleanup" class="opp-img">
+                            <div class="opp-content">
+                                <div class="card-title-row">
+                                    <h3 class="opp-title">Environmental Cleanup...</h3>
+                                    <span class="tag tag-green">Environment</span>
+                                </div>
+                                <p class="opp-company mb-3">Green Gaza Initiative</p>
+                                
+                                <div class="opp-meta-list">
+                                    <div class="meta-item"><i class="fas fa-map-marker-alt"></i> Gaza City</div>
+                                    <div class="meta-item"><i class="far fa-calendar-alt"></i> May 30, 2026</div>
+                                    <div class="meta-item"><i class="far fa-clock"></i> 4 hours</div>
+                                    <div class="meta-item"><i class="fas fa-user-friends"></i> 32/50 volunteers</div>
+                                </div>
+                                <a href="details.html?id=1" class="btn btn-primary btn-full margin-top: auto;">View Details</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 2 -->
+                        <div class="opp-card detailed-card">
+                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Tree Planting" class="opp-img">
+                            <div class="opp-content">
+                                <div class="card-title-row">
+                                    <h3 class="opp-title">Tree Planting Initiative</h3>
+                                    <span class="tag tag-green">Environment</span>
+                                </div>
+                                <p class="opp-company mb-3">Nature First Foundation</p>
+                                
+                                <div class="opp-meta-list">
+                                    <div class="meta-item"><i class="fas fa-map-marker-alt"></i> Khan Younis</div>
+                                    <div class="meta-item"><i class="far fa-calendar-alt"></i> June 5, 2026</div>
+                                    <div class="meta-item"><i class="far fa-clock"></i> 5 hours</div>
+                                    <div class="meta-item"><i class="fas fa-user-friends"></i> 28/40 volunteers</div>
+                                </div>
+                                <a href="details.html?id=2" class="btn btn-primary btn-full margin-top: auto;">View Details</a>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="opp-card detailed-card">
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Education Support" class="opp-img">
+                            <div class="opp-content">
+                                <div class="card-title-row">
+                                    <h3 class="opp-title">Education Support Program</h3>
+                                    <span class="tag tag-green">Education</span>
+                                </div>
+                                <p class="opp-company mb-3">Future Scholars</p>
+                                
+                                <div class="opp-meta-list">
+                                    <div class="meta-item"><i class="fas fa-map-marker-alt"></i> Rafah</div>
+                                    <div class="meta-item"><i class="far fa-calendar-alt"></i> June 8, 2026</div>
+                                    <div class="meta-item"><i class="far fa-clock"></i> 6 hours</div>
+                                    <div class="meta-item"><i class="fas fa-user-friends"></i> 18/25 volunteers</div>
+                                </div>
+                                <a href="details.html?id=3" class="btn btn-primary btn-full margin-top: auto;">View Details</a>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="opp-card detailed-card">
+                            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Food Distribution" class="opp-img">
+                            <div class="opp-content">
+                                <div class="card-title-row">
+                                    <h3 class="opp-title">Food Distribution...</h3>
+                                    <span class="tag tag-green">Social Services</span>
+                                </div>
+                                <p class="opp-company mb-3">Community Care</p>
+                                
+                                <div class="opp-meta-list">
+                                    <div class="meta-item"><i class="fas fa-map-marker-alt"></i> Gaza City</div>
+                                    <div class="meta-item"><i class="far fa-calendar-alt"></i> June 10, 2026</div>
+                                    <div class="meta-item"><i class="far fa-clock"></i> 3 hours</div>
+                                    <div class="meta-item"><i class="fas fa-user-friends"></i> 22/30 volunteers</div>
+                                </div>
+                                <a href="details.html?id=4" class="btn btn-primary btn-full margin-top: auto;">View Details</a>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="opp-card detailed-card">
+                            <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Youth Mentorship" class="opp-img">
+                            <div class="opp-content">
+                                <div class="card-title-row">
+                                    <h3 class="opp-title">Youth Mentorship Program</h3>
+                                    <span class="tag tag-green">Education</span>
+                                </div>
+                                <p class="opp-company mb-3">Bright Futures</p>
+                                
+                                <div class="opp-meta-list">
+                                    <div class="meta-item"><i class="fas fa-map-marker-alt"></i> Deir al-Balah</div>
+                                    <div class="meta-item"><i class="far fa-calendar-alt"></i> June 12, 2026</div>
+                                    <div class="meta-item"><i class="far fa-clock"></i> 8 hours</div>
+                                    <div class="meta-item"><i class="fas fa-user-friends"></i> 10/15 volunteers</div>
+                                </div>
+                                <a href="details.html?id=5" class="btn btn-primary btn-full margin-top: auto;">View Details</a>
+                            </div>
+                        </div>
+
+                        <!-- Card 6 -->
+                        <div class="opp-card detailed-card">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Medical Awareness" class="opp-img">
+                            <div class="opp-content">
+                                <div class="card-title-row">
+                                    <h3 class="opp-title">Medical Awareness Campaign</h3>
+                                    <span class="tag tag-green">Healthcare</span>
+                                </div>
+                                <p class="opp-company mb-3">Health First</p>
+                                
+                                <div class="opp-meta-list">
+                                    <div class="meta-item"><i class="fas fa-map-marker-alt"></i> Khan Younis</div>
+                                    <div class="meta-item"><i class="far fa-calendar-alt"></i> June 15, 2026</div>
+                                    <div class="meta-item"><i class="far fa-clock"></i> 4 hours</div>
+                                    <div class="meta-item"><i class="fas fa-user-friends"></i> 15/20 volunteers</div>
+                                </div>
+                                <a href="details.html?id=6" class="btn btn-primary btn-full margin-top: auto;">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination mt-5">
+                        <a href="#" class="page-link">Previous</a>
+                        <a href="#" class="page-link">1</a>
+                        <a href="#" class="page-link active">2</a>
+                        <a href="#" class="page-link">3</a>
+                        <a href="#" class="page-link">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <div class="logo footer-logo mb-3" style="display: flex; align-items: center; gap: 10px;">
+                    <img src="../image/logo.png" alt="Jusoor Logo" style="width: 40px; height: 40px; border-radius: 50%;">
+                    <div class="logo-text">
+                        <h1 style="font-size: 1.2rem; margin: 0;">JUSOOR</h1>
+                        <p style="font-size: 0.55rem; margin: 0;">TURN YOUR TIME INTO EXPERIENCE</p>
+                    </div>
+                </div>
+                <p>Connecting graduates with real volunteering opportunities to build skills and prepare for the labor market.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="opportunities.html">Opportunities</a></li>
+                    <li><a href="../index.html#about">About the Platform</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Organizations / Companies</h4>
+                <ul>
+                    <li><a href="signup.html">Register Your Organization</a></li>
+                    <li><a href="#">Post Opportunities</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center mt-4 pt-4">
+            <p>&copy; 2026 Jusoor - Islamic University of Gaza. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script src="../js/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+

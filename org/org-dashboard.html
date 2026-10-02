@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Organization Dashboard</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-light dashboard-body">
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
+                    <img src="../image/logo.png" alt="Jusoor Logo" style="width: 32px; height: 32px; border-radius: 50%;">
+                    <div class="logo-text">
+                        <h1 style="font-size: 1.1rem; margin: 0; color: white;">JUSOOR</h1>
+                        <p style="font-size: 0.5rem; margin: 0; opacity: 0.8; color: white;">TURN YOUR TIME INTO EXPERIENCE</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="org-dashboard.html" class="nav-item active">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="org-opportunities.html" class="nav-item">
+                    <i class="far fa-calendar-check"></i> Opportunities
+                </a>
+                <a href="org-applications.html" class="nav-item">
+                    <i class="far fa-file-alt"></i> Applications
+                </a>
+                <a href="org-volunteers.html" class="nav-item">
+                    <i class="fas fa-users"></i> Volunteers
+                </a>
+                <a href="org-attendance.html" class="nav-item">
+                    <i class="fas fa-qrcode"></i> Attendance
+                </a>
+                <a href="org-reports.html" class="nav-item">
+                    <i class="far fa-chart-bar"></i> Reports
+                </a>
+                <a href="org-profile.html" class="nav-item">
+                    <i class="far fa-building"></i> Org Profile
+                </a>
+                <a href="../index.html" class="nav-item" style="margin-top: 20px;">
+                    <i class="fas fa-sign-out-alt" style="width: 25px;"></i> Logout
+                </a>
+            </nav>
+
+            <div class="sidebar-footer-card" style="background-color: #166534; padding: 15px; border-radius: 8px; margin: 15px; margin-top: auto; color: white;">
+                <h6 style="color: white; margin-bottom: 5px; font-weight: 600; display: flex; align-items: center; gap: 8px;"><i class="fas fa-shield-alt" style="color: #4ade80;"></i> Organization</h6>
+                <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.75rem; margin-bottom: 0;">Manage your opportunities</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Header -->
+            <header class="dashboard-header mb-4 d-flex justify-content-between align-items-center flex-wrap">
+                <div>
+                    <h2>Dashboard</h2>
+                    <p class="text-muted text-sm mb-0">Welcome back, Green Gaza Initiative!</p>
+                </div>
+            </header>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid mb-4">
+                <div class="stat-card content-box" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                        <p style="color: #64748b; font-size: 0.9rem; margin: 0; font-weight: 500;">Active Opportunities</p>
+                        <i class="far fa-calendar-alt" style="color: #16a34a; font-size: 1.2rem;"></i>
+                    </div>
+                    <h3 style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin: 0 0 10px 0; line-height: 1;">12</h3>
+                    <p style="color: #16a34a; font-size: 0.85rem; margin: 0; font-weight: 500;"><i class="fas fa-arrow-up"></i> 20% from last month</p>
+                </div>
+                
+                <div class="stat-card content-box" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                        <p style="color: #64748b; font-size: 0.9rem; margin: 0; font-weight: 500;">Total Applications</p>
+                        <i class="far fa-file-alt" style="color: #16a34a; font-size: 1.2rem;"></i>
+                    </div>
+                    <h3 style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin: 0 0 10px 0; line-height: 1;">245</h3>
+                    <p style="color: #64748b; font-size: 0.85rem; margin: 0;">This month</p>
+                </div>
+                
+                <div class="stat-card content-box" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                        <p style="color: #64748b; font-size: 0.9rem; margin: 0; font-weight: 500;">Active Volunteers</p>
+                        <i class="fas fa-user-friends" style="color: #16a34a; font-size: 1.2rem;"></i>
+                    </div>
+                    <h3 style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin: 0 0 10px 0; line-height: 1;">58</h3>
+                    <p style="color: #16a34a; font-size: 0.85rem; margin: 0; font-weight: 500;"><i class="fas fa-arrow-up"></i> 15% from last month</p>
+                </div>
+                
+                <div class="stat-card content-box" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                        <p style="color: #64748b; font-size: 0.9rem; margin: 0; font-weight: 500;">Hours Contributed</p>
+                        <i class="fas fa-chart-line" style="color: #16a34a; font-size: 1.2rem;"></i>
+                    </div>
+                    <h3 style="font-size: 2.5rem; font-weight: 700; color: #0f172a; margin: 0 0 10px 0; line-height: 1;">1,234</h3>
+                    <p style="color: #64748b; font-size: 0.85rem; margin: 0;">All time</p>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-grid mb-4">
+                <!-- Volunteer Growth Line Chart -->
+                <div class="content-box">
+                    <h5 class="mb-4">Volunteer Growth</h5>
+                    <div class="chart-wrapper" style="position: relative; height: 260px; width: 100%;">
+                        <svg viewBox="0 0 800 260" style="width: 100%; height: 100%;">
+                            <!-- Grid lines -->
+                            <line x1="40" y1="20" x2="780" y2="20" stroke="#f1f5f9" stroke-dasharray="4" />
+                            <line x1="40" y1="70" x2="780" y2="70" stroke="#f1f5f9" stroke-dasharray="4" />
+                            <line x1="40" y1="120" x2="780" y2="120" stroke="#f1f5f9" stroke-dasharray="4" />
+                            <line x1="40" y1="170" x2="780" y2="170" stroke="#f1f5f9" stroke-dasharray="4" />
+                            <line x1="40" y1="220" x2="780" y2="220" stroke="#cbd5e1" stroke-width="1" />
+                            <!-- Vertical axis line -->
+                            <line x1="40" y1="20" x2="40" y2="220" stroke="#cbd5e1" stroke-width="1" />
+                            
+                            <!-- Labels Y -->
+                            <text x="30" y="24" fill="#64748b" font-size="12" text-anchor="end">60</text>
+                            <text x="30" y="74" fill="#64748b" font-size="12" text-anchor="end">45</text>
+                            <text x="30" y="124" fill="#64748b" font-size="12" text-anchor="end">30</text>
+                            <text x="30" y="174" fill="#64748b" font-size="12" text-anchor="end">15</text>
+                            <text x="30" y="224" fill="#64748b" font-size="12" text-anchor="end">0</text>
+
+                            <!-- Labels X -->
+                            <text x="40" y="245" fill="#64748b" font-size="12" text-anchor="middle">Jan</text>
+                            <text x="225" y="245" fill="#64748b" font-size="12" text-anchor="middle">Feb</text>
+                            <text x="410" y="245" fill="#64748b" font-size="12" text-anchor="middle">Mar</text>
+                            <text x="595" y="245" fill="#64748b" font-size="12" text-anchor="middle">Apr</text>
+                            <text x="780" y="245" fill="#64748b" font-size="12" text-anchor="middle">May</text>
+                            
+                            <!-- Curve data points -->
+                            <path d="M 40 170 C 132 170, 132 137, 225 137 C 317 137, 317 153, 410 153 C 502 153, 502 70, 595 70 C 687 70, 687 53, 780 53" fill="none" stroke="#3b82f6" stroke-width="3" />
+                            
+                            <!-- Dots -->
+                            <circle cx="40" cy="170" r="5" fill="white" stroke="#3b82f6" stroke-width="2" />
+                            <circle cx="225" cy="137" r="5" fill="white" stroke="#3b82f6" stroke-width="2" />
+                            <circle cx="410" cy="153" r="5" fill="white" stroke="#3b82f6" stroke-width="2" />
+                            <circle cx="595" cy="70" r="5" fill="white" stroke="#3b82f6" stroke-width="2" />
+                            <circle cx="780" cy="53" r="5" fill="white" stroke="#3b82f6" stroke-width="2" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Applications Trend Bar Chart -->
+                <div class="content-box">
+                    <h5 class="mb-4">Applications Trend</h5>
+                    <div class="bar-chart-wrapper" style="position: relative; height: 260px; padding-left: 30px; width: 100%;">
+                        <div class="y-axis" style="position: absolute; left: 0; top: 0; bottom: 30px; display: flex; flex-direction: column; justify-content: space-between; font-size: 0.75rem; color: #64748b; border-right: 1px solid #cbd5e1; padding-right: 8px;">
+                            <span>100</span>
+                            <span>75</span>
+                            <span>50</span>
+                            <span>25</span>
+                            <span>0</span>
+                        </div>
+                        <div class="bars-container" style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%; height: calc(100% - 30px); border-bottom: 1px solid #cbd5e1; padding-bottom: 0; padding-left: 10px; padding-right: 10px;">
+                            <div class="bar-item" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; position: relative;">
+                                <div class="bar" style="background-color: #0f172a; width: 60%; max-width: 45px; height: 45%; border-top-left-radius: 4px; border-top-right-radius: 4px;"></div>
+                                <span style="font-size: 0.75rem; color: #64748b; position: absolute; bottom: -25px;">Jan</span>
+                            </div>
+                            <div class="bar-item" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; position: relative;">
+                                <div class="bar" style="background-color: #0f172a; width: 60%; max-width: 45px; height: 50%; border-top-left-radius: 4px; border-top-right-radius: 4px;"></div>
+                                <span style="font-size: 0.75rem; color: #64748b; position: absolute; bottom: -25px;">Feb</span>
+                            </div>
+                            <div class="bar-item" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; position: relative;">
+                                <div class="bar" style="background-color: #0f172a; width: 60%; max-width: 45px; height: 68%; border-top-left-radius: 4px; border-top-right-radius: 4px;"></div>
+                                <span style="font-size: 0.75rem; color: #64748b; position: absolute; bottom: -25px;">Mar</span>
+                            </div>
+                            <div class="bar-item" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; position: relative;">
+                                <div class="bar" style="background-color: #0f172a; width: 60%; max-width: 45px; height: 82%; border-top-left-radius: 4px; border-top-right-radius: 4px;"></div>
+                                <span style="font-size: 0.75rem; color: #64748b; position: absolute; bottom: -25px;">Apr</span>
+                            </div>
+                            <div class="bar-item" style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; position: relative;">
+                                <div class="bar" style="background-color: #0f172a; width: 60%; max-width: 45px; height: 95%; border-top-left-radius: 4px; border-top-right-radius: 4px;"></div>
+                                <span style="font-size: 0.75rem; color: #64748b; position: absolute; bottom: -25px;">May</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity Grid -->
+            <div class="activity-grid">
+                <!-- Recent Opportunities -->
+                <div class="content-box">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-0">Recent Opportunities</h5>
+                        <a href="#" class="text-sm font-weight-medium text-dark" style="text-decoration: none;">View All</a>
+                    </div>
+                    
+                    <div class="org-list">
+                        <!-- Opp 1 -->
+                        <div class="org-list-item" style="background-color: #f8fafc; border-radius: 8px; padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="mb-2">
+                                    <span class="badge badge-green">Environment</span>
+                                    <span class="badge badge-green" style="background-color: #166534; color: white;">active</span>
+                                </div>
+                                <h6 class="mb-1 text-dark" style="font-size: 0.9rem;">Environmental Cleanup Campaign</h6>
+                                <p class="text-xs text-muted mb-0">May 30, 2026 <span class="ml-2">32/50 volunteers</span></p>
+                            </div>
+                            <button class="btn btn-light border btn-sm"><i class="far fa-eye text-muted"></i></button>
+                        </div>
+                        
+                        <!-- Opp 2 -->
+                        <div class="org-list-item" style="background-color: #f8fafc; border-radius: 8px; padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="mb-2">
+                                    <span class="badge badge-green">Environment</span>
+                                    <span class="badge badge-green" style="background-color: #166534; color: white;">active</span>
+                                </div>
+                                <h6 class="mb-1 text-dark" style="font-size: 0.9rem;">Tree Planting Initiative</h6>
+                                <p class="text-xs text-muted mb-0">June 5, 2026 <span class="ml-2">28/40 volunteers</span></p>
+                            </div>
+                            <button class="btn btn-light border btn-sm"><i class="far fa-eye text-muted"></i></button>
+                        </div>
+                        
+                        <!-- Opp 3 -->
+                        <div class="org-list-item" style="background-color: #f8fafc; border-radius: 8px; padding: 15px; margin-bottom: 0; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div class="mb-2">
+                                    <span class="badge badge-green">Education</span>
+                                    <span class="badge badge-green" style="background-color: #166534; color: white;">active</span>
+                                </div>
+                                <h6 class="mb-1 text-dark" style="font-size: 0.9rem;">Education Support Program</h6>
+                                <p class="text-xs text-muted mb-0">June 8, 2026 <span class="ml-2">18/25 volunteers</span></p>
+                            </div>
+                            <button class="btn btn-light border btn-sm"><i class="far fa-eye text-muted"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Applications -->
+                <div class="content-box">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-0">Recent Applications</h5>
+                        <a href="#" class="text-sm font-weight-medium text-dark" style="text-decoration: none;">View All</a>
+                    </div>
+                    
+                    <div class="org-list">
+                        <!-- App 1 -->
+                        <div class="org-list-item" style="background-color: #f8fafc; border-radius: 8px; padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h6 class="mb-1 text-dark" style="font-size: 0.9rem;">Sarah Ahmed</h6>
+                                <p class="text-xs text-muted mb-1">Environmental Cleanup Campaign</p>
+                                <p class="text-xs text-muted mb-0">Applied: May 20, 2026</p>
+                            </div>
+                            <span class="text-xs" style="color: #0f766e;"><i class="far fa-clock mr-1"></i> pending</span>
+                        </div>
+                        
+                        <!-- App 2 -->
+                        <div class="org-list-item" style="background-color: #f8fafc; border-radius: 8px; padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h6 class="mb-1 text-dark" style="font-size: 0.9rem;">Mohammed Ali</h6>
+                                <p class="text-xs text-muted mb-1">Tree Planting Initiative</p>
+                                <p class="text-xs text-muted mb-0">Applied: May 19, 2026</p>
+                            </div>
+                            <span class="text-xs" style="color: #0f766e;"><i class="far fa-clock mr-1"></i> pending</span>
+                        </div>
+                        
+                        <!-- App 3 -->
+                        <div class="org-list-item" style="background-color: #f8fafc; border-radius: 8px; padding: 15px; margin-bottom: 0; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h6 class="mb-1 text-dark" style="font-size: 0.9rem;">Fatima Hassan</h6>
+                                <p class="text-xs text-muted mb-1">Education Support Program</p>
+                                <p class="text-xs text-muted mb-0">Applied: May 18, 2026</p>
+                            </div>
+                            <span class="badge" style="background-color: #16a34a; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem;"><i class="far fa-check-circle mr-1"></i> accepted</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+

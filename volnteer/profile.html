@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - My Profile</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-light dashboard-body">
+
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="logo" style="text-decoration: none;">
+                    <img src="../image/logo.png" alt="Jusoor Logo" style="width: 32px; height: 32px; border-radius: 50%;">
+                    <div class="logo-text">
+                        <h1 style="font-size: 1.1rem; margin: 0; color: white;">JUSOOR</h1>
+                        <p style="font-size: 0.5rem; margin: 0; opacity: 0.8; color: white;">TURN YOUR TIME INTO EXPERIENCE</p>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-th-large"></i> Dashboard
+                </a>
+                <a href="applications.html" class="nav-item">
+                    <i class="far fa-file-alt"></i> My Applications
+                </a>
+                <a href="hours.html" class="nav-item">
+                    <i class="far fa-clock"></i> Volunteer Hours
+                </a>
+                <a href="profile.html" class="nav-item active">
+                    <i class="far fa-user"></i> Profile
+                </a>
+                <a href="notifications.html" class="nav-item">
+                    <i class="far fa-bell"></i> Notifications
+                </a>
+                <a href="../index.html" class="nav-item" style="margin-top: 20px;">
+                    <i class="fas fa-sign-out-alt" style="width: 25px;"></i> Logout
+                </a>
+            </nav>
+
+            <div class="sidebar-footer-card">
+                <div class="card-indicator"></div>
+                <h6>Volunteer</h6>
+                <p>Track your volunteer journey</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Header -->
+            <header class="dashboard-header mb-4">
+                <div>
+                    <h2>My Profile</h2>
+                    <p class="text-muted text-sm">Manage your personal information and preferences</p>
+                </div>
+            </header>
+
+            <!-- Profile Picture Section -->
+            <div class="content-box mb-4">
+                <h5 class="mb-4">Profile Picture</h5>
+                <div class="d-flex align-items-center">
+                    <div class="profile-avatar mr-4">
+                        AH
+                    </div>
+                    <div>
+                        <input type="file" id="profilePhotoInput" accept="image/png, image/jpeg, image/gif" style="display: none;">
+                        <button class="btn btn-primary mb-2" onclick="document.getElementById('profilePhotoInput').click()"><i class="fas fa-upload mr-2"></i> Upload Photo</button>
+                        <p class="text-sm text-muted mb-0">JPG, PNG or GIF. Max size 2MB.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basic Information Section -->
+            <div class="content-box mb-4">
+                <h5 class="mb-4">Basic Information</h5>
+                
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label class="form-label text-sm font-weight-medium">First Name</label>
+                        <input type="text" class="form-input filled-input" value="Ahmed">
+                    </div>
+                    <div class="form-group half-width">
+                        <label class="form-label text-sm font-weight-medium">Last Name</label>
+                        <input type="text" class="form-input filled-input" value="Hassan">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label text-sm font-weight-medium">Email</label>
+                    <input type="email" class="form-input filled-input" value="ahmed.hassan@example.com">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label class="form-label text-sm font-weight-medium">Phone Number</label>
+                        <input type="text" class="form-input filled-input" value="+970-59-123-4567">
+                    </div>
+                    <div class="form-group half-width">
+                        <label class="form-label text-sm font-weight-medium">City</label>
+                        <input type="text" class="form-input filled-input" value="Gaza City">
+                    </div>
+                </div>
+                
+                <div class="form-group mb-0">
+                    <label class="form-label text-sm font-weight-medium">Bio</label>
+                    <textarea class="form-input filled-input" rows="3">Passionate about environmental conservation and education. Looking to make a positive impact in my community through volunteering.</textarea>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="content-box mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="mb-0">Skills</h5>
+                    <button class="btn btn-light border btn-sm">Add Skill</button>
+                </div>
+                <div class="d-flex flex-wrap" style="gap: 10px;">
+                    <span class="tag skill-tag">Teaching <i class="fas fa-times ml-2"></i></span>
+                    <span class="tag skill-tag">Organizing Events <i class="fas fa-times ml-2"></i></span>
+                    <span class="tag skill-tag">First Aid <i class="fas fa-times ml-2"></i></span>
+                    <span class="tag skill-tag">Photography <i class="fas fa-times ml-2"></i></span>
+                    <span class="tag skill-tag">Translation <i class="fas fa-times ml-2"></i></span>
+                </div>
+            </div>
+
+            <!-- Areas of Interest Section -->
+            <div class="content-box mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="mb-0">Areas of Interest</h5>
+                    <button class="btn btn-light border btn-sm">Add Interest</button>
+                </div>
+                <div class="d-flex flex-wrap" style="gap: 10px;">
+                    <span class="tag tag-green interest-tag">Education <i class="fas fa-times ml-2"></i></span>
+                    <span class="tag tag-green interest-tag">Environment <i class="fas fa-times ml-2"></i></span>
+                    <span class="tag tag-green interest-tag">Healthcare <i class="fas fa-times ml-2"></i></span>
+                    <span class="tag tag-green interest-tag">Animal Welfare <i class="fas fa-times ml-2"></i></span>
+                </div>
+            </div>
+
+            <!-- Resume / CV Section -->
+            <div class="content-box mb-5">
+                <h5 class="mb-4">Resume / CV</h5>
+                <div class="upload-area text-center" onclick="document.getElementById('cvInput').click()" style="cursor: pointer;">
+                    <input type="file" id="cvInput" accept=".pdf,.doc,.docx" style="display: none;">
+                    <i class="fas fa-upload text-muted mb-3" style="font-size: 1.5rem;"></i>
+                    <p class="text-dark font-weight-medium mb-1">Upload your resume or CV</p>
+                    <p class="text-muted text-sm mb-3">PDF or DOC. Max size 5MB.</p>
+                    <button class="btn btn-light border btn-sm" onclick="event.stopPropagation(); document.getElementById('cvInput').click();">Choose File</button>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-end mb-5" style="gap: 15px;">
+                <button class="btn btn-light border px-4">Cancel</button>
+                <button class="btn btn-primary px-4">Save Changes</button>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+

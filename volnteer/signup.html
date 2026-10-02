@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jusoor - Start Your Journey</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="signup-page">
+    <div class="signup-container">
+        <!-- Logo -->
+        <a href="../index.html" class="signup-logo">
+            <div class="logo">
+                <img src="../image/logo.png" alt="Jusoor Logo">
+                <div class="logo-text">
+                    <h1>JUSOOR</h1>
+                    <p>TURN YOUR TIME INTO EXPERIENCE</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- Main Box -->
+        <div class="signup-box">
+            <div class="signup-header">
+                <h2>Start Your Journey</h2>
+                <p>Create your account and unlock opportunities that build your future</p>
+            </div>
+            
+            <div id="step1-container">
+                <div class="progress-bar">
+                    <div class="step active"></div>
+                    <div class="step"></div>
+                </div>
+                <div class="progress-text">Step 1 of 2</div>
+
+            <form class="signup-form" action="#" method="POST" id="signupForm">
+                <label class="form-label">I want to register as:</label>
+                
+                <div class="role-selector">
+                    <label class="role-card active">
+                        <input type="radio" name="role" value="volunteer" checked>
+                        <i class="far fa-user-circle"></i>
+                        <h4>Volunteer</h4>
+                        <p>Find and apply for opportunities</p>
+                    </label>
+                    
+                    <label class="role-card">
+                        <input type="radio" name="role" value="organization">
+                        <i class="far fa-building"></i>
+                        <h4>Organization</h4>
+                        <p>Post opportunities and manage volunteers</p>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control" placeholder="your.email@example.com" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Please enter a valid email address." required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" class="form-control" placeholder="........" pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}" title="Password must contain at least 8 characters, including a letter, a number, and a symbol." id="signupPassword" required>
+                            <i class="far fa-eye toggle-password" data-target="signupPassword"></i>
+                        </div>
+                        <div class="password-strength-container mt-2">
+                            <div class="strength-bars">
+                                <div class="strength-bar" id="str-1"></div>
+                                <div class="strength-bar" id="str-2"></div>
+                                <div class="strength-bar" id="str-3"></div>
+                            </div>
+                            <span class="strength-text text-xs" id="strengthText"></span>
+                        </div>
+                        <div class="password-hint">
+                            <i class="fas fa-info-circle"></i> 
+                            <span>Must be at least 8 characters long, containing a letter, a number, and a symbol.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" class="form-control" placeholder="........" id="signupConfirmPassword" required>
+                            <i class="far fa-eye toggle-password" data-target="signupConfirmPassword"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full" style="width: 100%;">Continue <i class="fas fa-arrow-right ml-2"></i></button>
+            </form>
+            </div> <!-- End step 1 container -->
+
+            <!-- STEP 2: Organization Details -->
+            <div id="step2-org-container" style="display: none;">
+                <div class="progress-bar">
+                    <div class="step active"></div>
+                    <div class="step active"></div>
+                </div>
+                <div class="progress-text">Step 2 of 2</div>
+
+                <form class="signup-form" action="#" method="POST" id="signupOrgForm">
+                    <div class="form-group">
+                        <label class="form-label">Organization Name</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Organization Type</label>
+                            <input type="text" class="form-control" placeholder="e.g., NGO, Charity" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Registration Number</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Website (optional)</label>
+                        <input type="url" class="form-control" placeholder="https://example.org">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Organization Description</label>
+                        <textarea class="form-control" rows="4" placeholder="Tell us about your organization..." style="resize: vertical;" required></textarea>
+                    </div>
+
+                    <div class="alert-info-box" style="background-color: #f0f9ff; border-radius: 6px; padding: 15px; display: flex; gap: 10px; margin-bottom: 25px;">
+                        <i class="fas fa-file-alt" style="color: #64748b; margin-top: 2px;"></i>
+                        <p class="text-sm mb-0" style="color: #334155;"><strong>Verification Required:</strong> Organization accounts are reviewed by our team to ensure quality. You'll receive approval within 24-48 hours.</p>
+                    </div>
+
+                    <div class="d-flex" style="gap: 15px;">
+                        <button type="button" class="btn btn-light border" id="backToStep1" style="flex: 1;"><i class="fas fa-arrow-left mr-2"></i> Back</button>
+                        <button type="submit" class="btn btn-primary" style="flex: 2;">Submit for Review <i class="fas fa-check ml-2"></i></button>
+                    </div>
+                </form>
+            </div> <!-- End step 2 container -->
+
+            <div class="signup-footer">
+                <p>Already have an account? <a href="login.html" class="text-green">Sign In</a></p>
+                <p class="terms-text">By continuing, you agree to Jusoor's Terms of Service and Privacy Policy</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="../js/script.js"></script>
+</body>
+</html>
+
+
