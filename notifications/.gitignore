@@ -1,0 +1,31 @@
+# Virtual Environment
+venv/
+env/
+
+# Python
+_pycache_/
+*.pyc
+*.pyo
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Migrations (keep them but ignore cache)
+*/migrations/_pycache_/
