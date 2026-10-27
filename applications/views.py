@@ -23,6 +23,17 @@ class ApplicationCreateView(generics.CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         application = serializer.save()
+
+        # Create notification for the organization
+        from notifications.models import Notification
+        org_user = application.opportunity.organization.user
+        Notification.objects.create(
+            user=org_user,
+            title='New application received',
+            message=f'{application.volunteer.username} applied to "{application.opportunity.title}"',
+            type='application_status',
+        )
+
         return Response({
             'message': 'Application submitted successfully',
             'application': ApplicationListSerializer(application).data,
@@ -99,8 +110,27 @@ class ApplicationUpdateView(generics.UpdateAPIView):
                 status=status.HTTP_403_FORBIDDEN
             )
 
-        return super().update(request, *args, **kwargs)
+        response = super().update(request, *args, **kwargs)
 
+        # Create notification for the volunteer about status change
+        from notifications.models import Notification
+        application.refresh_from_db()
+        if application.status == 'accepted':
+            Notification.objects.create(
+                user=application.volunteer,
+                title='Application accepted! 🎉',
+                message=f'Your application to "{application.opportunity.title}" has been accepted.',
+                type='application_status',
+            )
+        elif application.status == 'rejected':
+            Notification.objects.create(
+                user=application.volunteer,
+                title='Application update',
+                message=f'Your application to "{application.opportunity.title}" was not accepted this time.',
+                type='application_status',
+            )
+
+        return response
 
 class WithdrawApplicationView(APIView):
     """DELETE /api/applications/<id>/withdraw/ — Volunteer withdraws their application."""
