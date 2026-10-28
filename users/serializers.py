@@ -60,3 +60,27 @@ class OrganizationSerializer(serializers.ModelSerializer):
         model = Organization
         fields = ['id', 'org_name', 'description', 'website', 'address', 'verified']
         read_only_fields = ['id', 'verified']
+
+        # ========== ADMIN SERIALIZERS ==========
+
+class AdminUserListSerializer(serializers.ModelSerializer):
+    """Full user info for admin panel."""
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'phone', 'role', 'is_active', 'created_at']
+
+
+class AdminOrganizationSerializer(serializers.ModelSerializer):
+    """Full organization info for admin panel."""
+    user_info = AdminUserListSerializer(source='user', read_only=True)
+
+    class Meta:
+        model = Organization
+        fields = ['id', 'org_name', 'description', 'website', 'address', 'verified', 'user_info']
+
+
+class AdminUserUpdateSerializer(serializers.ModelSerializer):
+    """Allow admin to update user status."""
+    class Meta:
+        model = User
+        fields = ['is_active']
