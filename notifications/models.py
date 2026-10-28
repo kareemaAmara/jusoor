@@ -25,20 +25,6 @@ class Notification(models.Model):
         return f"{self.user.username} - {self.title}"
 
 
-class Message(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
-    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_messages')
-    content = models.TextField()
-    is_read = models.BooleanField(default=False)
-    sent_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-sent_at']
-
-    def _str_(self):
-        return f"{self.sender.username} → {self.receiver.username}"
-
-
 class Report(models.Model):
     REPORT_TYPES = (
         ('volunteers', 'Volunteers'),

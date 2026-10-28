@@ -6,6 +6,8 @@ from .views import (
     MarkAsReadView,
     MarkAllAsReadView,
     DeleteNotificationView,
+    OrganizationReportsView,
+    AdminReportsView,
 )
 
 urlpatterns = [
@@ -15,4 +17,6 @@ urlpatterns = [
     path('read-all/', MarkAllAsReadView.as_view(), name='mark-all-read'),
     path('<int:pk>/read/', MarkAsReadView.as_view(), name='mark-read'),
     path('<int:pk>/', DeleteNotificationView.as_view(), name='delete-notification'),
+    path('reports/organization/', OrganizationReportsView.as_view(), name='org-reports'),
+    path('reports/admin/', AdminReportsView.as_view(), name='admin-reports'),
 ]
