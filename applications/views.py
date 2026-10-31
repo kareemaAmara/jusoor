@@ -196,3 +196,56 @@ class VolunteerStatsView(APIView):
             'applications_count': Application.objects.filter(volunteer=request.user).count(),
             'accepted_count': Application.objects.filter(volunteer=request.user, status='accepted').count(),
         })
+
+        # ========== CERTIFICATES ==========
+
+from django.http import HttpResponse
+from .utils import generate_certificate_pdf
+
+
+class MyCertificatesView(generics.ListAPIView):
+    """GET /api/applications/certificates/ — List certificates (verified participations) for the volunteer."""
+    serializer_class = ParticipationSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Participation.objects.filter(
+            volunteer=self.request.user,
+            verified=True
+        ).order_by('-completion_date')
+
+
+class DownloadCertificateView(APIView):
+    """GET /api/applications/certificates/<id>/download/ — Download a certificate as PDF."""
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, pk):
+        try:
+            participation = Participation.objects.get(
+                pk=pk,
+                volunteer=request.user,
+                verified=True
+            )
+        except Participation.DoesNotExist:
+            return Response(
+                {'error': 'Certificate not found or not verified yet'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        opportunity = participation.opportunity
+
+        pdf_buffer = generate_certificate_pdf(
+            volunteer_name=participation.volunteer.username,
+            opportunity_title=opportunity.title,
+            org_name=opportunity.organization.org_name,
+            start_date=str(opportunity.start_date),
+            end_date=str(opportunity.end_date or participation.completion_date or ''),
+            hours=participation.hours_completed,
+            issue_date=str(participation.completion_date or ''),
+        )
+
+        response = HttpResponse(pdf_buffer.getvalue(), content_type='application/pdf')
+        response['Content-Disposition'] = (
+            f'attachment; filename="jusoor_certificate_{pk}.pdf"'
+        )
+        return response

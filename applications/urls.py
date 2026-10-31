@@ -9,6 +9,8 @@ from .views import (
     ParticipationCreateView,
     MyParticipationView,
     VolunteerStatsView,
+    MyCertificatesView,
+    DownloadCertificateView,
 )
 
 urlpatterns = [
@@ -24,4 +26,8 @@ urlpatterns = [
     path('participation/', ParticipationCreateView.as_view(), name='participation-create'),
     path('participation/my/', MyParticipationView.as_view(), name='my-participation'),
     path('stats/', VolunteerStatsView.as_view(), name='volunteer-stats'),
+
+    # Certificates
+    path('certificates/', MyCertificatesView.as_view(), name='my-certificates'),
+    path('certificates/<int:pk>/download/', DownloadCertificateView.as_view(), name='download-certificate'),
 ]
