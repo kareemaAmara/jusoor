@@ -1,0 +1,1 @@
+web: gunicorn jusoor_backend.wsgi
