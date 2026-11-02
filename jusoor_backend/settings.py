@@ -174,7 +174,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # ========== PRODUCTION SETTINGS ==========
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = False
 
 SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
 
